@@ -1,0 +1,18 @@
+
+* install
+
+** spacemacs
+
+#+BEGIN_SRC shell
+git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+#+END_SRC 
+
+** dylayer
+
+#+BEGIN_SRC shell
+git clone https://gitee.com/daotoyi/spacemacs.d ~/
+#+END_SRC
+
+* note
+
+null
