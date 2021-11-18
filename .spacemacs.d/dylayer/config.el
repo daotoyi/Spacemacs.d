@@ -1,16 +1,14 @@
 ;; basic setting.
 ;; --------------------------------------------------------------------------------------------
-(when (eq system-type 'windows-nt)
-  (setq default-directory "e:/Refine/"))
-(when (eq system-type 'gnu/linux)
-  (setq default-directory "/mnt/e/Refine/"))
+
+;; default directory.
+;; (when (eq system-type 'windows-nt)
+;;   (setq default-directory "e:/Refine/"))
+;; (when (eq system-type 'gnu/linux)
+;;   (setq default-directory "/mnt/e/Refine/"))
 
 (setq-default frame-title-format '("%f"))
 (setq frame-title-format "Spacemacs(daotoyi)@%b")
-
-;; clear hotkey in insert state map and use Emacs State 
-(setcdr evil-insert-state-map nil)
-(define-key evil-insert-state-map [escape] 'evil-normal-state)
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
@@ -23,8 +21,12 @@
 ;; all backups goto ~/.backups instead in the current directory
 (setq backup-directory-alist (quote (("." . "e:/TMP/TmpFiles"))))
 
+;; dired, show file(.org) with yellow in buffer.
+(add-hook 'dired-mode-hook
+          (lambda ()
+            (highlight-lines-matching-regexp "\.org$" 'hi-yellow)))
 (setq initial-scratch-message
-      "\n;; Configuration by Daoyi <gitee.com:daotoyi/emacs.d>. \n;; Enjoy!\n\n")
+      "\n;; Configuration by Daoyi <gitee.com/daotoyi/spacemacs.d>. \n;; Enjoy!\n\n")
 
 ;; keybingings
 ;; --------------------------------------------------------------------------------------------

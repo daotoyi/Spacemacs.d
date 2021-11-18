@@ -56,7 +56,7 @@
 
 ;; (setq org-enforce-todo-dependencies t)    ;; main task cannot set done if subtask not finished.
 
-(setq	org-todo-keywords '((sequence "TODO(t!)" "NEXT(n)" "WAIT(w)" "|" "CANCEL(c@/!)" "DONE(d!)"))
+(setq	org-todo-keywords '((sequence "TODO(t!)" "NEXT(n)" "WAIT(w)" "|" "CANC(c@/!)" "DONE(d!)"))
 	org-todo-keyword-faces '(("NEXT"     . "orange")
 	                         ("WAIT"  . "purple")
 	                         ("DONE"     . "green" )

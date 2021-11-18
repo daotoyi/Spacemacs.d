@@ -14,15 +14,16 @@
   - [[#features][Features:]]
 - [[#install][Install]]
 - [[#key-bindings][Key bindings]]
+- [[#note][Note]]
 
 * Description
-This layer adds support for something.
+This layer adds support for private configuration.
 
 ** Features:
   - Autocomplete
-  - Lint
-  - Refactor
-  - ...
+  - support helm & ivy (partial)
+  - Refactor org 
+  - add basic config.el
 
 * Install
 To use this configuration layer, add it to your =~/.spacemacs=. You will need to
@@ -31,9 +32,32 @@ file.
 
 * Key bindings
 
-| Key Binding | Description    |
-|-------------+----------------|
-| ~SPC x x x~ | Does thing01   |
+| Key Binding | Description                  |
+|-------------+------------------------------|
+| ~SPC x x x~ | Does thing01                 |
+| -           | view config.el & packages.el |
+
+* Note
+
+- packages.el
+
+  packages-name in (defconst dylayer-packages) must be exit, or will try install it from mlpa.
+
+- layers/unicode-fonts
+
+  this layer will show UI friendly. (recommander)
+  
+- init/dotspacemacs-default-font
+
+  set font not exits . or it will affect Chinese show, even setted user-config:
+
+  #+BEGIN_SRC emacs-lisp
+  (spacemacs//set-monospaced-font "Monaco" "微软雅黑" 16 20)
+  #+END_SRC
+
+  - layers/python
+
+    failed to git clone nose.el.git, (copy nose.el to elpa/.../develop/)
 
 # Use GitHub URLs if you wish to link a Spacemacs documentation file or its heading.
 # Examples:

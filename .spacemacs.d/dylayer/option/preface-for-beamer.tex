@@ -1,0 +1,183 @@
+%=============导言区通用设置===============
+%%%=====主题设置*******
+%\usetheme{default}
+%\usetheme{CambridgeUS}
+%\usetheme{AnnArbor}
+\usetheme{Boadilla}
+\usefonttheme[onlymath]{serif}  				%设置数学公式字体为衬线字体
+\useoutertheme[subsection=false]{miniframes}
+\useinnertheme{circles}
+%\usecolortheme{wolverine}
+%\setbeamertemplate{navigation symbols}{}		%移除所有的导航栏
+\setbeamertemplate{caption}[numbered]			%展示图表计数器
+%\setbeamertemplate{footline}[text line]{\hfill\strut\insertframenumber{} / \inserttotalframenumber}
+%在页面右下角添加“当前帧数 / 总帧数”，\strut表示生成一个宽度为0，总高度等于行距的不可见支柱
+\setbeamersize{text margin left=0.8cm, text margin right=0.8cm} %设置文字区域左右留白的宽度
+\setbeamertemplate{itemize subitem}{--}			%将无序列表的标志样式改为--(第二层)
+\setbeamertemplate{itemize item}[circle] 		%将无序列表的标志样式改为圆形(第一层)
+\setbeamertemplate{enumerate item}[circle] 	%将有序列表的标志样式改为圆形(第一层)
+\setbeamertemplate{section in toc}[circle] 	%设置section in toc为圆形包含数字
+
+%%%=====宏包使用********
+\usepackage[space=true,hyperref,UTF8]{ctex} 	%支持中文，加入超链接宏包，设置UTF8编码
+\usepackage{graphicx} 							%引入图片所需宏包
+\graphicspath{{figures/}} 						%设置图像插入路径
+\usepackage{lipsum} 								%可输入英文假文
+\usepackage{ragged2e}
+\justifying\let\raggedright\justifying 			%设置段落对齐方式为两端对齐
+\usepackage{float} 								%其H参数可以让浮动环境不再浮动
+\usepackage{array} 								%提供了更多的表格列说明符，以及修正了一些表格显示上的问题
+\usepackage{booktabs} 							%以使用学术上常见的三线表命令
+\usepackage{dcolumn} 								%可使用小数点对齐列说明符
+\usepackage{setspace}
+\setstretch{1}										%设置行间距的因子(默认为1)
+\usepackage{calligra}								%手写字体
+\usepackage[T1]{fontenc}							%以实现更多的字体功能，如默认字体下的斜体加粗
+\usepackage{ifthen}
+
+%设置计数器
+\newcounter{mycntthm} %设置新的计数器
+\newcounter{mycntexam}
+\setcounter{mycntthm}{0} %设定计数器默认值
+\setcounter{mycntexam}{0}
+
+%开关设置
+\newcommand{\thmseriesnamestyle}{Chinese} %Chinese表示设置定理类名称为中文，English表示设置定理类名称为英文
+\newcommand{\thmseriesnumbering}{true} %true表示对定理类环境进行编号，false表示不对定理类环境进行编号
+
+\ifthenelse{\equal{\thmseriesnamestyle}{Chinese}}{%
+	\newcommand{\dfnname}{定义}
+	\newcommand{\lemmaname}{引理}
+	\renewcommand{\thmname}{定理}
+	\newcommand{\coroname}{推论}
+	\renewcommand{\proofname}{证明.}
+	\newcommand{\examname}{例}
+	\newcommand{\alertname}{注意}
+}%
+{%
+	\newcommand{\dfnname}{Definition}
+	\newcommand{\lemmaname}{Lemma}
+	\renewcommand{\thmname}{Theorem}
+	\newcommand{\coroname}{Corollary}
+	\renewcommand{\proofname}{Proof.}
+	\newcommand{\examname}{Example}
+	\newcommand{\alertname}{Alert}
+}
+
+\ifthenelse{\equal{\thmseriesnumbering}{true}}{%
+	\newcommand{\mycntthm}{\stepcounter{mycntthm}\themycntthm}
+	\newcommand{\mycntexam}{\stepcounter{mycntexam}\themycntexam}
+}%
+{%
+	\newcommand{\mycntthm}{}
+	\newcommand{\mycntexam}{}
+}
+
+
+%自定义颜色
+\colorlet{temp}{violet} %定义环境颜色
+\colorlet{fgmyupdfncolor}{temp}
+\colorlet{bgmyupdfncolor}{temp!20}
+\colorlet{bgmylowdfncolor}{temp!10}
+\setbeamercolor{myupdfncolor}{fg=fgmyupdfncolor,bg=bgmyupdfncolor}
+\setbeamercolor{mylowdfncolor}{fg=black,bg=bgmylowdfncolor}
+
+\definecolor{fgmyupthmcolor}{RGB}{51, 51, 178} %引理定理环境颜色
+\definecolor{bgmyupthmcolor}{RGB}{214, 214, 239}
+\definecolor{bgmylowthmcolor}{RGB}{234, 234, 247}
+\setbeamercolor{myupthmcolor}{fg=fgmyupthmcolor,bg=bgmyupthmcolor}
+\setbeamercolor{mylowthmcolor}{fg=black,bg=bgmylowthmcolor}
+
+\colorlet{temp}{blue!70!orange} %推论环境颜色
+\colorlet{fgmyupcorocolor}{temp}
+\colorlet{bgmyupcorocolor}{temp!20}
+\colorlet{bgmylowcorocolor}{temp!10}
+\setbeamercolor{myupcorocolor}{fg=fgmyupcorocolor,bg=bgmyupcorocolor}
+\setbeamercolor{mylowcorocolor}{fg=black,bg=bgmylowcorocolor}
+
+\colorlet{temp}{lime!60!black} %证明环境颜色
+\colorlet{fgmyupproofcolor}{temp}
+\colorlet{bgmyupproofcolor}{temp!20}
+\colorlet{bgmylowproofcolor}{temp!10}
+\setbeamercolor{myupproofcolor}{fg=fgmyupproofcolor,bg=bgmyupproofcolor}
+\setbeamercolor{mylowproofcolor}{fg=black,bg=bgmylowproofcolor}
+
+\definecolor{fgmyupexamcolor}{RGB}{0, 127, 0} %例子环境颜色
+\definecolor{bgmyupexamcolor}{RGB}{204, 229, 204}
+\definecolor{bgmylowexamcolor}{RGB}{229, 242, 229}
+\setbeamercolor{myupexamcolor}{fg=fgmyupexamcolor,bg=bgmyupexamcolor}
+\setbeamercolor{mylowexamcolor}{fg=black,bg=bgmylowexamcolor}
+
+\colorlet{temp}{red} %警示环境颜色
+\colorlet{fgmyupalertcolor}{temp}
+\colorlet{bgmyupalertcolor}{temp!20}
+\colorlet{bgmylowalertcolor}{temp!10}
+\setbeamercolor{myupalertcolor}{fg=fgmyupalertcolor,bg=bgmyupalertcolor}
+\setbeamercolor{mylowalertcolor}{fg=black,bg=bgmylowalertcolor}
+
+
+%自定义定理类环境
+\newenvironment{dfn}[1][]%定义环境
+{
+	\begin{beamerboxesrounded}[upper=myupdfncolor,lower=mylowdfncolor,shadow]{\dfnname{} \mycntthm{} \ifthenelse{\equal{#1}{}}{}{(#1)}}\ifthenelse{\equal{\thmseriesnumbering}{true}}{\addtocounter{mycntthm}{-1}\refstepcounter{mycntthm}}{}
+}%
+{
+	\end{beamerboxesrounded}
+}
+
+\newenvironment{lemma}[1][]%引理环境
+{
+	\begin{beamerboxesrounded}[upper=myupthmcolor,lower=mylowthmcolor,shadow]{\lemmaname{} \mycntthm{} \ifthenelse{\equal{#1}{}}{}{(#1)}}\ifthenelse{\equal{\thmseriesnumbering}{true}}{\addtocounter{mycntthm}{-1}\refstepcounter{mycntthm}}{}
+}%
+{
+	\end{beamerboxesrounded}
+}
+
+\newenvironment{thm}[1][]%定理环境
+{
+	\begin{beamerboxesrounded}[upper=myupthmcolor,lower=mylowthmcolor,shadow]{\thmname{} \mycntthm{} \ifthenelse{\equal{#1}{}}{}{(#1)}}\ifthenelse{\equal{\thmseriesnumbering}{true}}{\addtocounter{mycntthm}{-1}\refstepcounter{mycntthm}}{}
+}%
+{
+	\end{beamerboxesrounded}
+}
+
+\newenvironment{coro}[1][]%推论环境
+{
+	\begin{beamerboxesrounded}[upper=myupcorocolor,lower=mylowcorocolor,shadow]{\coroname{} \mycntthm{} \ifthenelse{\equal{#1}{}}{}{(#1)}}\ifthenelse{\equal{\thmseriesnumbering}{true}}{\addtocounter{mycntthm}{-1}\refstepcounter{mycntthm}}{}
+}%
+{
+	\end{beamerboxesrounded}
+}
+
+\renewenvironment{proof}[1][]%证明环境
+{
+	\begin{beamerboxesrounded}[upper=myupproofcolor,lower=mylowproofcolor,shadow]{\proofname}
+}%
+{
+	\hfill$\blacksquare$
+	\end{beamerboxesrounded}
+}
+
+\newenvironment{exam}[1][]%例环境
+{
+	\begin{beamerboxesrounded}[upper=myupexamcolor,lower=mylowexamcolor,shadow]{\examname{} \mycntexam{} \ifthenelse{\equal{#1}{}}{}{(#1)}}\ifthenelse{\equal{\thmseriesnumbering}{true}}{\addtocounter{mycntexam}{-1}\refstepcounter{mycntexam}}{}
+}%
+{
+	\end{beamerboxesrounded}
+}
+
+\newenvironment{solu}%解答环境
+{
+	\begin{beamercolorbox}[rounded=true,shadow=true]{mylowexamcolor}
+}%
+{
+	\end{beamercolorbox}
+}
+
+\renewenvironment{alert}[1][]%警示环境
+{
+	\begin{beamerboxesrounded}[upper=myupalertcolor,lower=mylowalertcolor,shadow]{\alertname}
+}%
+{
+	\end{beamerboxesrounded}
+}

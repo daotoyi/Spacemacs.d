@@ -78,13 +78,19 @@ Each entry is either:
 
 ;; add package
 (defconst dylayer-packages
-  '(youdao-dictionary
+  '(
     ;; location: from build-in. e.g.:
     ;; (occur-mode :location built-in)
+
     ;; location: from github
     ;; (gulpjs :location (recipe :fetcher github :repo "zilongshanren/emacs-gulpjs"))
+
+    ;; (nose :location (recipe :fetcher github :repo "syl20bnr/nose.el"))
+
+    youdao-dictionary
     org
     ivy
+    evil
     )
   )
 
@@ -97,7 +103,7 @@ Each entry is either:
     (global-set-key (kbd "C-q") 'youdao-dictionary-search-at-point+)
     ))
 
-;; init occur mode
+;; init occur mode (from built-in)
 (defun dylayer/init-occur-mode ()
   (evilified-state-evilify-map occur-mode-map
     :mode occur-mmode))
@@ -131,4 +137,17 @@ Each entry is either:
           ;; ("C-x C-f" . counsel-find-file)  ;; helm function
           ("C-c f" . counsel-recentf)
           ("C-c g" . counsel-git)))
-)
+  )
+
+;; post-evil
+(defun dylayer/post-init-evil()
+  ;; clear hotkey in insert state map and use Emacs State
+  (setcdr evil-insert-state-map nil)
+  (define-key evil-insert-state-map [escape] 'evil-normal-state)
+  )
+
+;; support for python
+(defun dylayer/init-nose()
+  (use-package nose.el
+    :init)
+  )
