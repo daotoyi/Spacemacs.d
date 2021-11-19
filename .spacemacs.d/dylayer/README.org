@@ -55,17 +55,17 @@ file.
   (spacemacs//set-monospaced-font "Monaco" "微软雅黑" 16 20)
   #+END_SRC
 
-  - layers/python
+- layers/python
 
-    failed to git clone nose.el.git, (copy nose.el to elpa/.../develop/)
+  failed to git clone nose.el.git, (copy nose.el to elpa/.../develop/)
 
-  - layers/chinese
+- layers/chinese
 
-    redefine youdao-dictionary(in chinese, refine in dylayer)：
-    
-      - (configuration-layer/remove-layer 'youdao-dictionary) in dylayer/layers.el don't work;
+  redefine youdao-dictionary(in chinese, refine in dylayer)：
+  
+    - (configuration-layer/remove-layer 'youdao-dictionary) in dylayer/layers.el don't work;
 
-      - comment chinese-packages/(youdao-dictionaruy:...) in .emacs.d/layers/+intl/chinese/packages.el, OK.
+    - comment chinese-packages/(youdao-dictionaruy:...) in .emacs.d/layers/+intl/chinese/packages.el, OK.
 
 # Use GitHub URLs if you wish to link a Spacemacs documentation file or its heading.
 # Examples:
