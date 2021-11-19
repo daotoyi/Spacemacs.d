@@ -85,7 +85,7 @@ Each entry is either:
     ;; location: from github
     ;; (gulpjs :location (recipe :fetcher github :repo "zilongshanren/emacs-gulpjs"))
 
-    ;; (nose :location (recipe :fetcher github :repo "syl20bnr/nose.el"))
+    ;; (nose :location (recipe :fetcher g
 
     youdao-dictionary
     org
@@ -94,13 +94,14 @@ Each entry is either:
     )
   )
 
-;; init package
-(defun dylayer/post-init-youdao-dictionary ()
+;; init package
+(defun dylayer/init-youdao-dictionary ()
   (use-package youdao-dictionary
-    :defer t
+    ;; :defer t 
     :init
-    ;; (spacemacs/set-leader-keys "oy" 'youdao-dictionary-search-at-point+)
-    (global-set-key (kbd "C-q") 'youdao-dictionary-search-at-point+)
+    (setq url-automatic-caching t)
+    (spacemacs/set-leader-keys "oy" 'youdao-dictionary-search-at-point+)
+    ;; (global-set-key (kbd "C-q") 'youdao-dictionary-search-at-point+)
     ))
 
 ;; init occur mode (from built-in)

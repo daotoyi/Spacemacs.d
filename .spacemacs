@@ -48,10 +48,10 @@ This function should only modify configuration layer settings."
      treemacs
      unicode-fonts
      helm
-     dylayer
      python
      ;; org
      ;; lsp
+     ;; youdao-dictionary
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
@@ -64,6 +64,7 @@ This function should only modify configuration layer settings."
      ;; spell-checking
      ;; syntax-checking
      ;; version-control
+     dylayer
      )
 
 
@@ -563,8 +564,12 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (spacemacs//set-monospaced-font "Monaco" "微软雅黑" 17 20)
+
   (evilified-state-evilify-map occur-mode-map
     :mode occur-mode)
+
+  ;; (setq url-automatic-caching t)
+  ;; (spacemacs/set-leader-keys "oy" 'youdao-dictionary-search-at-point+)
 
 )
 
@@ -588,5 +593,5 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(region ((t (:inherit highlight :extend t :background "cornflower blue")))))
+ '(region ((t (:inherit highlight :extend t :background "medium slate blue")))))
 )

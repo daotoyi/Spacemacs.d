@@ -91,6 +91,7 @@
                ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
                ("\\paragraph{%s}" . "\\paragraph*{%s}")
                ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+
 ;; dissertation template
 (add-to-list 'org-latex-classes
 	       '("dissertation"

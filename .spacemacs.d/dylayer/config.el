@@ -36,6 +36,7 @@
 (global-set-key (kbd "C-0") 'text-scale-adjust)
 (global-set-key (kbd "M-s o") 'occur-dwim)
 ;; (global-set-key (kbd "C-c f") 'counsel-recentf) ; spacemacs/counsel-recentf
+;; (spacemacs/set-leader-keys "oy" 'youdao-dictionary-search-at-point+)
 
 ;; change  move-method in  occur-buffer to (HJKL)
 ;; set in  dotspacemacs/user-config in ~/.spacemacs

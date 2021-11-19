@@ -59,6 +59,14 @@ file.
 
     failed to git clone nose.el.git, (copy nose.el to elpa/.../develop/)
 
+  - layers/chinese
+
+    redefine youdao-dictionary(in chinese, refine in dylayer)：
+    
+      - (configuration-layer/remove-layer 'youdao-dictionary) in dylayer/layers.el don't work;
+
+      - comment chinese-packages/(youdao-dictionaruy:...) in .emacs.d/layers/+intl/chinese/packages.el, OK.
+
 # Use GitHub URLs if you wish to link a Spacemacs documentation file or its heading.
 # Examples:
 # [[https://github.com/syl20bnr/spacemacs/blob/master/doc/VIMUSERS.org#sessions]]
