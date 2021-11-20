@@ -87,17 +87,19 @@ Each entry is either:
 
     ;; (nose :location (recipe :fetcher g
 
-    youdao-dictionary
     org
     ivy
     evil
-    )
-  )
+    youdao-dictionary
+    disable-mouse
+    ;; yasnippet
+    ))
 
-;; init package
+;; init pakage
+;; ---------------------------------------------------------------------
 (defun dylayer/init-youdao-dictionary ()
   (use-package youdao-dictionary
-    ;; :defer t 
+    :defer t
     :init
     (setq url-automatic-caching t)
     (spacemacs/set-leader-keys "oy" 'youdao-dictionary-search-at-point+)
@@ -105,22 +107,29 @@ Each entry is either:
     ))
 
 ;; init occur mode (from built-in)
+;; ---------------------------------------------------------------------
 (defun dylayer/init-occur-mode ()
   (evilified-state-evilify-map occur-mode-map
     :mode occur-mmode))
 
 ;; init (from github)
+;; ---------------------------------------------------------------------
 (defun dylayer/init-gulpjs ()
   (use-package gulpjs
     :init))
 
 ;; post-init org-agenda
+;; ---------------------------------------------------------------------
 (defun dylayer/init-org()
-  (require 'init-org)
-  (require 'init-roll)
-  )
+  (use-package org
+   :defer t
+   :config
+     (require 'init-org)
+     (require 'init-roll)
+  ))
 
 ;; init-xxx : xxx must be exit package/
+;; ---------------------------------------------------------------------
 (defun dylayer/init-ivy()
   (use-package drag-stuff
     :bind (("<M-up>". drag-stuff-up)
@@ -137,18 +146,46 @@ Each entry is either:
           ;; ("M-x" . counsel-M-x)            ;; helm functon
           ;; ("C-x C-f" . counsel-find-file)  ;; helm function
           ("C-c f" . counsel-recentf)
-          ("C-c g" . counsel-git)))
-  )
+          ("C-c g" . counsel-git))))
 
 ;; post-evil
+;; ---------------------------------------------------------------------
 (defun dylayer/post-init-evil()
   ;; clear hotkey in insert state map and use Emacs State
   (setcdr evil-insert-state-map nil)
-  (define-key evil-insert-state-map [escape] 'evil-normal-state)
+  (define-key evil-insert-state-map [escape] 'evil-normal-state))
+
+;; disable-mouse
+;; ---------------------------------------------------------------------
+(defun dylayer/init-disable-mouse()
+  ;; show different bewteen evil-mode and emacs-mod
+  ;; ---------- use-package
+  ;; (use-package disable-mouse
+  ;;   :init
+  ;;   (global-disable-mouse-mode))
+
+  ;; ---------- redefine
+  (define-minor-mode disable-mouse-mode
+    "A minor-mode that disables all mouse keybinds."
+    :global t
+    :lighter " 🐭"
+    :keymap (make-sparse-keymap))
+
+  (dolist (type '(mouse down-mouse drag-mouse
+                        double-mouse triple-mouse))
+    (dolist (prefix '("" C- M- S- M-S- C-M- C-S- C-M-S-))
+      ;; Yes, I actually HAD to go up to 7 here.
+      (dotimes (n 7)
+        (let ((k (format "%s%s-%s" prefix type n)))
+          (define-key disable-mouse-mode-map
+            (vector (intern k)) #'ignore)))))
+  (disable-mouse-mode 1)
   )
 
-;; support for python
-(defun dylayer/init-nose()
-  (use-package nose.el
-    :init)
-  )
+;; add yasnippet
+;; ---------------------------------------------------------------------
+(defun dylayer/post-init-yasnippet()
+  (use-package yasnippet
+    :config
+    (add-to-list 'yas-snippet-dirs "～/.spacemacs.d/snippets")
+    (yas-global-mode 1)))

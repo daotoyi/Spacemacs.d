@@ -178,7 +178,8 @@
 (add-hook 'kill-emacs-hook 'org-mobile-push) 
 ;;; moble sync -------------------------------------------------------------------------
 (defvar org-mobile-sync-timer nil)
-(defvar org-mobile-sync-idle-secs (* 60 10))
+;; (defvar org-mobile-sync-idle-secs (* 60 10))
+(defvar org-mobile-sync-idle-secs (* 60 60))
 (defun org-mobile-sync ()
   "enable mobile org idle sync"
   (interactive)
