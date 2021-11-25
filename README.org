@@ -15,4 +15,8 @@ git clone https://gitee.com/daotoyi/spacemacs.d ~/
 
 * note
 
-null
+** todo
+
+- startup-buffer(*spacemacs*) show not friendly.
+  
+dotspacemacs/layers/dotspacemacs-default-font '("daoyi" ...) # daoyi(don't exit) VS Monaco.

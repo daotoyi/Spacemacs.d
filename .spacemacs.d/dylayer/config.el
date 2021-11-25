@@ -7,11 +7,14 @@
 ;; (when (eq system-type 'gnu/linux)
 ;;   (setq default-directory "/mnt/e/Refine/"))
 
+;; emacs title
 (setq-default frame-title-format '("%f"))
 (setq frame-title-format "Spacemacs(daotoyi)@%b")
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
+;; reload file modified by other editor.
+(global-auto-revert-mode t)
 ;;  "Replace DOS eolns CR LF with Unix eolns CR"
 (defun remove-dos-eol ()
   (interactive)
@@ -25,6 +28,7 @@
 (add-hook 'dired-mode-hook
           (lambda ()
             (highlight-lines-matching-regexp "\.org$" 'hi-yellow)))
+
 (setq initial-scratch-message
       "\n;; Configuration by Daoyi <gitee.com/daotoyi/spacemacs.d>. \n;; Enjoy!\n\n")
 

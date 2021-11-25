@@ -57,10 +57,10 @@
 ;; (setq org-enforce-todo-dependencies t)    ;; main task cannot set done if subtask not finished.
 
 (setq	org-todo-keywords '((sequence "TODO(t!)" "NEXT(n)" "WAIT(w)" "|" "CANC(c@/!)" "DONE(d!)"))
-	org-todo-keyword-faces '(("NEXT"     . "orange")
+	org-todo-keyword-faces '(("NEXT"     . "cyan")
 	                         ("WAIT"  . "purple")
 	                         ("DONE"     . "green" )
-	                         ("CANCEL" . (:foreground "cyan" :weight bold))))
+	                         ("CANC" . (:foreground "cyan" :weight bold))))
 
 ;;; org-tags ----------------------------------------------------------------------------
 (setq org-tag-alist '((:startgroup . nil)
@@ -174,8 +174,13 @@
 ;;      (unless (file-exists-p org-mobile-inbox-for-pull)
 ;;        (shell-command (concat "touch " org-mobile-inbox-for-pull)))
 
+(global-set-key "\C-cmp" 'org-mobile-push)
+(global-set-key "\C-cml" 'org-mobile-pull)
+
+;; sync on emacs init(pull) or exit(push)
 (add-hook 'after-init-hook 'org-mobile-pull)
-(add-hook 'kill-emacs-hook 'org-mobile-push) 
+;; (add-hook 'kill-emacs-hook 'org-mobile-push) 
+
 ;;; moble sync -------------------------------------------------------------------------
 (defvar org-mobile-sync-timer nil)
 ;; (defvar org-mobile-sync-idle-secs (* 60 10))
@@ -201,6 +206,7 @@
 (org-mobile-sync-enable)
 
 ;;; org-pomodoro --------------------------------------------------------------------
+;;; remove to dylayer/package#init-org-pomodoro.
 ;; C-c C-x C-i :start clock（donnot show on spaceline）/ clock in
 ;; C-c C-x C-o :stop clock                             / clock out
 ;; C-c C-x C-r :make dynamic table
@@ -208,7 +214,7 @@
 
 ;; (global-set-key "\C-xps" 'org-pomodoro)                       ;; start org-pomodoro
 ;; (global-set-key "\C-xpv" 'spaceline-toggle-org-pomodoro-off)  ;; turn-off org-pomodoro
-;; ;; (global-set-key "\C-xpk" 'org-pomodoro-kill)                  ;; stop?
+;; (global-set-key "\C-xpk" 'org-pomodoro-kill)                  ;; stop?
 ;; (global-set-key "\C-xpx" 'org-pomodoro-extend-last-clock)     ;; stop
 ;; (use-package org-pomodoro
 ;;   :config

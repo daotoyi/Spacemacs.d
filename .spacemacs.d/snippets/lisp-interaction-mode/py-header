@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name:py-header 
+# key: pyh
+# --
+#!/usr/bin/env python
+# coding:utf-8
+"""
+@File:`(file-name-nondirectory buffer-file-name)`
+@Time:
+@Author:Daoyi
+"""
+
+$0

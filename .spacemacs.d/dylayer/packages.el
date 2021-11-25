@@ -57,7 +57,7 @@ Each entry is either:
     - :excluded (t or nil): Prevent the package from being loaded
       if value is non-nil
 
-    - :location: Specify a custom installation location.
+    - :location: Specify a custom installation location.
       The following values are legal:
 
       - The symbol `elpa' (default) means PACKAGE will be
@@ -92,6 +92,9 @@ Each entry is either:
     evil
     youdao-dictionary
     disable-mouse
+    org-pomodoro
+    bongo
+    ;; emms
     ;; yasnippet
     ))
 
@@ -125,7 +128,7 @@ Each entry is either:
    :defer t
    :config
      (require 'init-org)
-     (require 'init-roll)
+     ;; (require 'init-roll)
   ))
 
 ;; init-xxx : xxx must be exit package/
@@ -189,3 +192,55 @@ Each entry is either:
     :config
     (add-to-list 'yas-snippet-dirs "～/.spacemacs.d/snippets")
     (yas-global-mode 1)))
+
+;; org-pomodoro
+;; ---------------------------------------------------------------------
+(defun dylayer/init-org-pomodoro()
+  (use-package org-pomodoro
+    :config
+    (setq org-pomodoro-audio-player "mplayer")
+    (setq org-pomodoro-finished-sound-args "-volume 0.7")
+    (setq org-pomodoro-long-break-sound-args "-volume 0.7")
+    (setq org-pomodoro-short-break-sound-args "-volume 0.7")
+    (setq org-pomodoro-ticking-sound-args "-volume 0.3")
+    (global-set-key "\C-xps" 'org-pomodoro)                       ;; start org-pomodoro
+    (global-set-key "\C-xpv" 'spaceline-toggle-org-pomodoro-off)  ;; turn-off org-pomodoro
+    (global-set-key "\C-xpk" 'org-pomodoro-kill)                  ;; stop?
+    (global-set-key "\C-xpx" 'org-pomodoro-extend-last-clock)     ;; stop
+    )
+  )
+
+;; bongo
+;; ---------------------------------------------------------------------
+(defun dylayer/init-bongo()
+  (use-package bongo
+    :defer t
+    :config
+    (setq default-process-coding-system '(utf-8-unix . chinese-gbk-dos)) ;; recognize chinese
+    (when (eq system-type 'windows-nt)
+      (add-to-list 'exec-path "d:/Program Files/MPlayer for Windows/")
+      (setq bongo-default-directory "e:/Recreation/Music/")
+      )
+    :custom
+    (bongo-enabled-backends '(mplayer))
+    ))
+
+;; emms
+;; ---------------------------------------------------------------------
+(defun dylayer/init-emms()
+  (use-package emms
+    :ensure t
+    :defer t
+    :config
+    (progn
+      (require 'emms-setup)  ;; Emms set 
+      (emms-standard)        ;; minimalistic, standard, all/devel 
+      )
+    (setq default-process-coding-system '(utf-8-unix . chinese-gbk-dos)) ;; recognize chinese
+    (setq emms-player-list '(emms-player-mplayer)
+          emms-player-mplayer-command-name "d:/Program Files/MPlayer for Windows/mplayer.exe"
+          emms-player-mplayer-parameters '("-slave")
+
+          emms-show-format "♪ %s"
+          emms-source-file-default-directory "e:/Recreation/Music/"
+    )))

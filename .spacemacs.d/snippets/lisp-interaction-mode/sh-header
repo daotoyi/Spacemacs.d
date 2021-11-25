@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: sh-header
+# key: shh
+# --
+######################################################################### 
+# File Name: `(file-name-nondirectory buffer-file-name)`
+# Author: Daoyi
+# Mail: whshi@techyauld.com
+# Time: 
+######################################################################### 
+#!/bin/bash 

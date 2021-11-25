@@ -1,0 +1,37 @@
+# -*- mode: snippet -*-
+# name: Latex Titile 
+# key: lttitle
+# --
+#+TITLE: 
+#+AUTHOR: SHI WENHUA
+#+EMAIL:  whshi@techyauld
+#+DATE:   \today
+#+DESCRIPTION:
+#+startup: beamer
+# #+startup: latex
+#+LATEX_CLASS: beamer-prefer
+#+LANGUAGE: en
+#+BEAMER_FRAME_LEVEL: 3
+#+OPTIONS:  H:3 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:  TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+EXPORT_SELECT_TAGS:  export
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+LaTeX_CLASS_OPTIONS: [xcolor=svgnames,bigger,presentation]
+#+LATEX_HEADER: % --- titile --- % ---------------- % ---------------- % ---------------- %
+#+LATEX_HEADER: %\title{LatexBeamer}
+#+LATEX_HEADER: \subtitle[option]{subLatexBeamer}
+#+LATEX_HEADER: %\author{SHI WENHUA}
+#+LATEX_HEADER: %\date{\today}
+#+LATEX_HEADER: %\institute[template]{
+                   Department of Customer Service\\
+                   Beijing techyauld Technology Development Co. Ltd.\\
+                   6th Zone 2nd Floor, Building 21st, Zpark, Haidian District, Beijing 100193, P.R.China\\[1ex]
+                  \texttt{whshi@techyauld}}
+#+LATEX_HEADER: % --- theme --- % --- setbeamer --- % ---------------- % ---------------- %
+#+LATEX_HEADER: %\usetheme{CambridgeUS}    % AnnArbor Berlin Boadilla Darmstadt
+#+LATEX_HEADER: %\usecolortheme[named=blue]{structure}
+#+LATEX_HEADER: %\usecolortheme{wolverine}   % [blue & yellow & orange] item; {crane}% orange
+#+LATEX_HEADER: %\useoutertheme{infolines}
+#+LATEX_HEADER: \graphicspath{e:/Refine/Org/figure/}
+
+$0
