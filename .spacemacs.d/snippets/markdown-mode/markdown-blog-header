@@ -1,0 +1,19 @@
+# -*- mode: snippet -*-
+# name: markdown-blog-header
+# key: mbh
+# --
+
+---
+title: "{{ replace .Name "-" " " | title }}"
+subtitle:
+author: daoyi
+date: {{ .Date }}
+lastmod: {{ .Date }}
+tags: []
+categories: []
+keywords: []
+draft: true
+autoCollapseToc: false
+---
+
+## $0

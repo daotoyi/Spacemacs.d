@@ -30,78 +30,69 @@
         (?C . (:background "pink"       :foreground "DarkGreen" :weight bold))
         ;; (?D . (:background "cyan"       :foreground "purple"    :weight bold))
         (?D . (:background "yellow"     :foreground "red"       :weight bold))
-        (?E . (:background "green"      :foreground "black"5     :weight bold))
+        (?E . (:background "cyan"      :foreground "black"5     :weight bold))
         ))
-(global-set-key "\C-ca" 'org-agenda)
-(global-set-key "\C-cb" 'org-iswitchb)   ;; switch between org-mode buffers.(obsolete)
-(global-set-key "\C-cc" 'org-capture)
-(global-set-key "\C-cl" 'org-store-link) ;; setup links anywhere in emacs. && "\C-c \C-l" invoke
-;; (global-set-key (kbd "C-c a") 'org-agenda)
-;; (global-set-key (kbd "C-c c") 'org-capture)
-;; (define-key global-map "\C-cc" 'org-capture)
 
 ;;; org-agenda-view ------------------------------------------------------------------------
 (setq org-agenda-custom-commands
-      '(
-        ("w" . "TaskScheme")
+      '(("w" . "TaskScheme")
         ("wa" "     important &&     urgent" tags-todo "+PRIORITY=\"A\"")
         ("wb" "     important && not urgent" tags-todo "+2Quadrant")
         ("wc" " not important &&     urgent" tags-todo "+period")
         ;; ("wb" "    important && not urgent" tags-todo "-weekly-monthly-daily+PRIORITY=\"B\"")
         ;; ("wc" "not important && not urgent" tags-todo "+PRIORITY=\"C\"")
         ;; ("g" "GTD View"
-	;;  (
-	  ;; (stuck "") ;; review stuck projects as designated by org-stuck-projects
-          ;; (tags-todo "Inbox")
-          ;; (tags-todo "Context")
-          ;; (tags-todo "Waiting")
-          ;; (tags-todo "Project")
-          ;; (tags "Someday")
-          ;; (tags "Reference")
-          ;; (tags "Transh")
-          ;; ))
-	("v" . "Agenda view")
-        ("vp" "Agenda for all projects"
-	 tags "All Project"
-         (
-	  ;; (org-agenda-skip-function 'tjh/org-agenda-skip-only-timestamp-entries)
-          (org-agenda-overriding-header "Agenda for all projects: "))
-	 "e:/Refine/GTD/exportview.html")   ;; org-store-agenda-views - export files.
-	;; ("vt" "Agenda view for all finished tasks"
-	;;  todo "DONE|CANCELED"
-	;;  (
-	;;   ;; (org-agenda-skip-function 'tjh/org-agenda-skip-unfinished-entries)
-        ;;    (org-agenda-overriding-header "All finished tasks: "))
-        ;;   "e:/Refine/GTD/exportview.org")	
-	("vu" "ITEMs unscheduled"
-	 alltodo ""
-          ((org-agenda-skip-function 'tjh/org-agenda-skip-scheduled-entries)
-           (org-agenda-overriding-header "ITEMs unscheduled: "))
-          "e:/Refine/GTD/exportview.org")
-        ("vd" "ITEMs no deadlines"
-	 alltodo ""
-         ((org-agenda-skip-function 'tjh/org-agenda-skip-not-deadline-entries)
-          (org-agenda-overriding-header "ITEMs no deadlines: "))
-         "e:/Refine/GTD/exportview.org")
-	))
+	      ;;  (
+	      ;; (stuck "") ;; review stuck projects as designated by org-stuck-projects
+        ;; (tags-todo "Inbox")
+        ;; (tags-todo "Context")
+        ;; (tags-todo "Waiting")
+        ;; (tags-todo "Project")
+        ;; (tags "Someday")
+        ;; (tags "Reference")
+        ;; (tags "Transh")
+        ;; ))
+
+	      ;; ("v" . "Agenda view")
+        ;; ("vp" "Agenda for all projects"
+	      ;;  tags "All Project"
+        ;;  ((org-agenda-skip-function 'dy/org-agenda-skip-only-timestamp-entries)
+        ;;   (org-agenda-overriding-header "Agenda for all projects: "))
+	      ;;  "e:/Refine/GTD/exportview.html")   ;; org-store-agenda-views - export files.
+	      ;; ("vt" "Agenda view for all finished tasks"
+	      ;;  todo "DONE|CANCELED"
+	      ;;  ((org-agenda-skip-function 'dy/org-agenda-skip-unfinished-entries)
+        ;;   (org-agenda-overriding-header "All finished tasks: "))
+        ;;  "e:/Refine/GTD/exportview.org")
+	      ;; ("vu" "ITEMs unscheduled"
+	      ;;  alltodo ""
+        ;;  ((org-agenda-skip-function 'dy/org-agenda-skip-scheduled-entries)
+        ;;   (org-agenda-overriding-header "ITEMs unscheduled: "))
+        ;;  "e:/Refine/GTD/exportview.org")
+        ;; ("vd" "ITEMs no deadlines"
+	      ;;  alltodo ""
+        ;;  ((org-agenda-skip-function 'dy/org-agenda-skip-not-deadline-entries)
+        ;;   (org-agenda-overriding-header "ITEMs no deadlines: "))
+        ;;  "e:/Refine/GTD/exportview.org")
+	      ))
 
 ;; Skip entries which only have timestamp but no TODO keywords.
-(defun tjh/org-agenda-skip-only-timestamp-entries ()
+(defun dy/org-agenda-skip-only-timestamp-entries ()
   (org-agenda-skip-entry-if 'nottodo 'any))
 
 ;; Skip entries which are not finished.
-(defun tjh/org-agenda-skip-unfinished-entries ()
+(defun dy/org-agenda-skip-unfinished-entries ()
   ;; (org-agenda-skip-entry-if 'nottodo '("DONE")))
   (org-agenda-skip-entry-if 'todo 'any))
 
 ;; Skip unscheduled entries.
- (defun tjh/org-agenda-skip-scheduled-entries ()
+ (defun dy/org-agenda-skip-scheduled-entries ()
    (org-agenda-skip-entry-if 'timestamp
 			     'todo '("DONE" "WAITING" "CANCELED")
 			     'regexp ":Project:"))
 
 ;; Skip entries which are not deadlines.
- (defun tjh/org-agenda-skip-not-deadline-entries ()
+ (defun dy/org-agenda-skip-not-deadline-entries ()
    (org-agenda-skip-entry-if 'notdeadline))
 
 ;; used by org-clock-sum-today-by-tags

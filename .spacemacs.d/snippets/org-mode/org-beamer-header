@@ -1,7 +1,8 @@
 # -*- mode: snippet -*-
-# name: Latex Titile 
-# key: lttitle
+# name: org-beamer-header
+# key: obeamerh
 # --
+
 #+TITLE: 
 #+AUTHOR: SHI WENHUA
 #+EMAIL:  whshi@techyauld

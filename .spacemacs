@@ -38,37 +38,47 @@ This function should only modify configuration layer settings."
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     auto-completion
      ;; (auto-completion :variables
      ;;                  auto-completion-enable-snippets-in-popup t)
      better-defaults
      unicode-fonts
      emacs-lisp
      git
-     ivy
+     html
      markdown
-     multiple-cursors
+     multiple-cursors ;; bond with evil-mc
      treemacs
-     helm
-     ;; python
+     python
+     yaml
+     ;; ivy
+     ;; helm
      ;; org
+     ;; (org :variables
+     ;;      org-enable-hugo-support t)
      ;; lsp
-     ;; youdao-dictionary
+     ;; rust ;; include toml-mode
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
+     (gtags :variables gtags-enable-by-default t)
      chinese
      ;; (chinese :variables
      ;;          chinese-enable-fcitx t)
-     ;; (shell :variables
-     ;;        shell-default-height 30
-     ;;        shell-default-position 'bottom)
-     ;; spell-checking
+     ;; (spell-checking :variables
+     ;;                 spell-checking-enable-by-default nil)
      ;; syntax-checking
      ;; version-control
+     (elfeed :variables
+             rmh-elfeed-org-files (list
+                                   "~/.spacemacs.d/elfeed/elfeed.org"
+                                   ;; "~/.spacemacs.d/elfeed/elfeed-demo.org"
+                                        )
+             ;; elfeed-feeds '(("http://nullprogram.com/feed/" blog emacs)
+             ;;                ("https://awsl.io/feed.xml"  zzhwaxy))
+             )
      dylayer
+     ;; emoji
      )
-
 
    ;; List of additional packages that will be installed without being wrapped
    ;; in a layer (generally the packages are installed only and should still be
@@ -200,7 +210,7 @@ It should only modify the values of Spacemacs settings."
    ;; pair of numbers, e.g. `(recents-by-project . (7 .  5))', where the first
    ;; number is the project limit and the second the limit on the recent files
    ;; within a project.
-   dotspacemacs-startup-lists '((recents . 10)
+   dotspacemacs-startup-lists '((recents . 6)
                                 (projects . 5))
 
    ;; True if the home buffer should respond to resize events. (default t)
@@ -566,26 +576,60 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
 
+  
+  ;; -----------------------------------------------------------------------
   ;; dotspacemacs-layers-->chinese
   ;; (spacemacs//set-monospaced-font "Monaco" "微软雅黑" 16 20)
 
-  ;; -----------------------------------------------------------------------
-  ;; configuration(defun dotspacemacs/init()); setq-default below. 
+  ;; configuration(defun dotspacemacs/init()); setq-default below.
   (setq-default dotspacemacs-default-font '("Monaco"
-                              :size 16
-                              :weight normal
-                              :width normal
-                              :powerline-scale 1.1))
+                                            :size 16
+                                            :weight normal
+                                            :width normal
+                                            :powerline-scale 1.1))
 
-  ;; chinese font.(english --> dotspacemacs-default-fonts: Monaco) 
+  ;; chinese font.(english --> dotspacemacs-default-fonts: Monaco)
   (dolist (charset '(kana han symbol cjk-misc bopomofo))
     (set-fontset-font (frame-parameter nil 'font)
                       charset (font-spec :family "Microsoft Yahei" :size 20)))
-  ;; -----------------------------------------------------------------------
 
-  ;; occur-mode
+  ;; -----------------------------------------------------------------------
+  ;; set prefixes in layers/+spacemacs/spacemacs-defaults/keybindings.el
+  (setq spacemacs/key-binding-prefixes `((,dotspacemacs-emacs-command-key "M-x")
+                                         ("od"   "dired-dir")
+                                         ("oe"   "evil/multi-cursor")
+                                         ("oh"   "helm")
+                                         ("om"   "major-mode")
+                                         ("oo"   "org/occur")
+                                         ("os"   "search")
+                                         ))
+  (mapc (lambda (x) (apply #'spacemacs/declare-prefix x))
+        spacemacs/key-binding-prefixes)
+
+  ;; -----------------------------------------------------------------------
+  ;; emacs key bindings in xxx-mode
+  (evil-set-initial-state 'calendar-mode 'emacs)
+  (evil-set-initial-state 'bongo-mode 'emacs)
+
+  ;; -----------------------------------------------------------------------
+  ;; occur-mode "List lines matching regexp in new buffer"
   (evilified-state-evilify-map occur-mode-map
     :mode occur-mode)
+
+  ;; -----------------------------------------------------------------------
+  ;; elfeed face.
+  (defface important-elfeed-entry '((t :foreground "red")) ;; #f77
+    "Marks an important Elfeed entry.")
+  (push '(important important-elfeed-entry) elfeed-search-face-alist)
+
+  (defface tool-elfeed-entry '((t :foreground "#1e90ff"))
+    "Marks tool entry")
+  (push '(tool tool-elfeed-entry) elfeed-search-face-alist)
+
+  (defface cognition-elfeed-entry '((t :foreground "purple"))
+    "Marks cognition entry")
+  (push '(cognition cognition-elfeed-entry) elfeed-search-face-alist)
+  
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -600,9 +644,11 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(elfeed-feeds nil)
  '(evil-want-Y-yank-to-eol nil)
  '(package-selected-packages
-   '(bongo org-pomodoro alert log4e disable-mouse yapfify stickyfunc-enhance sphinx-doc pytest pyenv-mode pydoc py-isort poetry pippel pipenv pyvenv pip-requirements lsp-python-ms lsp-pyright live-py-mode importmagic epc ctable concurrent deferred helm-pydoc helm-gtags helm-cscope xcscope ggtags dap-mode lsp-treemacs bui lsp-mode lv cython-mode counsel-gtags company-anaconda blacken anaconda-mode pythonic yasnippet-snippets xterm-color unfill terminal-here shell-pop xr pangu-spacing org-rich-yank org-category-capture org-present gntp org-mime org-download org-contrib org-cliplink org mwim multi-term mmm-mode markdown-toc markdown-mode htmlize helm-org-rifle helm-company helm-c-yasnippet gnuplot gh-md fuzzy find-by-pinyin-dired evil-org goto-chg eshell-z eshell-prompt-extras esh-help company chinese-conv auto-yasnippet yasnippet ace-pinyin pinyinlib ac-ispell auto-complete zenburn-theme ws-butler writeroom-mode winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package undo-tree treemacs-projectile treemacs-persp treemacs-icons-dired treemacs-evil toc-org symon symbol-overlay string-inflection string-edit spaceline-all-the-icons solarized-theme restart-emacs request rainbow-delimiters quickrun popwin pcre2el password-generator paradox overseer org-superstar open-junk-file nameless multi-line monokai-theme macrostep lorem-ipsum link-hint inspector info+ indent-guide hybrid-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-org helm-mode-manager helm-make helm-ls-git helm-flx helm-descbinds helm-ag google-translate golden-ratio font-lock+ flycheck-package flycheck-elsa flx-ido fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-easymotion evil-collection evil-cleverparens evil-args evil-anzu eval-sexp-fu emr elisp-slime-nav editorconfig dumb-jump drag-stuff dotenv-mode dired-quick-sort diminish define-word column-enforce-mode clean-aindent-mode centered-cursor-mode auto-highlight-symbol auto-compile aggressive-indent ace-link ace-jump-helm-line)))
+   '(flyspell-correct-helm flyspell-correct auto-dictionary elfeed-dashboard elfeed-org elfeed-goodies ace-jump-mode elfeed rime ox-publish yaml-mode web-mode web-beautify tagedit slim-mode scss-mode sass-mode pug-mode prettier-js impatient-mode simple-httpd helm-css-scss haml-mode grip-mode emmet-mode counsel-css toml-mode ron-mode racer rust-mode flycheck-rust cargo company-jedi jedi-core python-environment super-save emms volume bongo org-pomodoro alert log4e disable-mouse yapfify stickyfunc-enhance sphinx-doc pytest pyenv-mode pydoc py-isort poetry pippel pipenv pyvenv pip-requirements lsp-python-ms lsp-pyright live-py-mode importmagic epc ctable concurrent deferred helm-pydoc helm-gtags helm-cscope xcscope ggtags dap-mode lsp-treemacs bui lsp-mode lv cython-mode counsel-gtags company-anaconda blacken anaconda-mode pythonic yasnippet-snippets xterm-color unfill terminal-here shell-pop xr pangu-spacing org-rich-yank org-category-capture org-present gntp org-mime org-download org-contrib org-cliplink org mwim multi-term mmm-mode markdown-toc markdown-mode htmlize helm-org-rifle helm-company helm-c-yasnippet gnuplot gh-md fuzzy find-by-pinyin-dired evil-org goto-chg eshell-z eshell-prompt-extras esh-help company chinese-conv auto-yasnippet yasnippet ace-pinyin pinyinlib ac-ispell auto-complete zenburn-theme ws-butler writeroom-mode winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package undo-tree treemacs-projectile treemacs-persp treemacs-icons-dired treemacs-evil toc-org symon symbol-overlay string-inflection string-edit spaceline-all-the-icons solarized-theme restart-emacs request rainbow-delimiters quickrun popwin pcre2el password-generator paradox overseer org-superstar open-junk-file nameless multi-line monokai-theme macrostep lorem-ipsum link-hint inspector info+ indent-guide hybrid-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-org helm-mode-manager helm-make helm-ls-git helm-flx helm-descbinds helm-ag google-translate golden-ratio font-lock+ flycheck-package flycheck-elsa flx-ido fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-easymotion evil-collection evil-cleverparens evil-args evil-anzu eval-sexp-fu emr elisp-slime-nav editorconfig dumb-jump drag-stuff dotenv-mode dired-quick-sort diminish define-word column-enforce-mode clean-aindent-mode centered-cursor-mode auto-highlight-symbol auto-compile aggressive-indent ace-link ace-jump-helm-line))
+ '(volume-backend 'volume-aumix-backend))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

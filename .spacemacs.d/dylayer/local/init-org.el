@@ -17,10 +17,14 @@
 	org-src-fontify-natively t))		;; highlight
 (when (eq system-type 'windows-nt)
   (setq refine-directory "E:/Refine/"
-	org-directory "E:/Refine/Org/"))
+        org-directory "E:/Refine/Org/"
+        newencryption "type nul>"
+        ))
 (when (eq system-type 'gnu/linux)
   (setq refine-directory "/mnt/e/Refine/"
-	org-directory "/mnt/e/Refine/Org/"))
+        org-directory "/mnt/e/Refine/Org/"
+        newencryption "touch "
+        ))
 
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 (add-to-list 'auto-mode-alist '("\\.sh\\'" . org-mode))
@@ -36,47 +40,50 @@
 ;; (add-hook 'org-mode-hook '(lambda () (setq fill-column 80)))
 ;; (add-hook 'org-mode-hook 'turn-on-auto-fill)
 
-(global-set-key "\C-c L" 'org-insert-link-global)
-(global-set-key "\C-c o" 'org-open-at-point-global)
-
 ;;; org-language ----------------------------------------------------------------------------
 (org-babel-do-load-languages
  'org-babel-load-languages
- '((R . t)
-   (emacs-lisp . t)
-   (matlab . t)
+ '(
    (C . t)
-   ;; (sh . t)
    (ditaa . t)
    (python . t)
    (latex . t)
-   (js . t)
+   (emacs-lisp . t)
+   ;; (sh . t)
+   ;; (matlab . t)
+   ;; (R . t)
+   ;; (js . t)
    ))
 ;;; org-todo ----------------------------------------------------------------------------
 
 ;; (setq org-enforce-todo-dependencies t)    ;; main task cannot set done if subtask not finished.
 
 (setq	org-todo-keywords '((sequence "TODO(t!)" "NEXT(n)" "WAIT(w)" "|" "CANC(c@/!)" "DONE(d!)"))
-	org-todo-keyword-faces '(("NEXT"     . "cyan")
-	                         ("WAIT"  . "purple")
-	                         ("DONE"     . "green" )
-	                         ("CANC" . (:foreground "cyan" :weight bold))))
+	    org-todo-keyword-faces '(("NEXT"     . "cyan")
+	                             ("WAIT"  . "yellow")
+	                             ("DONE"     . "green" )
+	                             ("CANC" . (:foreground "orange" :weight bold))))
+(setq org-log-done 'time)
+;; (setq org-log-done 'note)
 
 ;;; org-tags ----------------------------------------------------------------------------
-(setq org-tag-alist '((:startgroup . nil)
-		      ("Inbox" . ?i) ("Context" . ?c) ("Waiting" . ?w) ("Project" . ?p) ("Someday" . ?s) ("Reference" . ?r) ("Transh" . ?t)
-		      (:endgroup . nil)
-		      (:startgroup . nil)
-		      ("@Product" . ?P)
-		      (:grouptags . nil)
-		      ("P@tpe4k" . ?4) ("P@tpe5k" . ?5) ("P@tpe6k" . ?6) ("P@tre" . ?7) ("P@tsw" . ?8) ("P@other" . ?9)
-		      (:endgroup . nil)
+(setq org-tag-alist '(
+                      (:startgroup . nil)
+		                  ("Inbox" . ?i) ("Context" . ?c) ("Waiting" . ?w) ("Project" . ?p) ("Someday" . ?s) ("Reference" . ?r) ("Transh" . ?t)
+		                  (:endgroup . nil)
+
+		                  (:startgroup . nil)
+		                  ("@Product" . ?P)
+		                  (:grouptags . nil)
+		                  ("P@tpe4k" . ?4) ("P@tpe5k" . ?5) ("P@tpe6k" . ?6) ("P@tre" . ?7) ("P@tsw" . ?8) ("P@other" . ?9)
+		                  (:endgroup . nil)
+
                       ("Work" . ?W)   ("Hobby" . ?H)   ("Refine" . ?R) ("Invest" . ?I) ("Output" . ?O)
-		      (:newline . nil)
-		      ("ZhouYi" . ?Y) ("ZhongYi" . ?Z) ("Code" . ?C)
-		      (:newline . nil)
-		      ("1Quadrant" . ?1) ("2Quadrant" . ?2) ("3Quadrant" . ?3)
-))
+		                  (:newline . nil)
+		                  ("ZhouYi" . ?Y) ("ZhongYi" . ?Z) ("Code" . ?C)
+		                  (:newline . nil)
+		                  ("1Quadrant" . ?1) ("2Quadrant" . ?2) ("3Quadrant" . ?3)
+                      ))
 
 (setq org-tags-exclude-from-inheritance '("Project"))
 (setq org-tags-match-list-sublevels nil)
@@ -88,11 +95,14 @@
         ("1" "Task@quadrant1"  entry (file+headline org-agenda-file-task "Task&quadrant1")  "* TODO [#A] %? :1Quadrant:\n SCHEDULED: %T\n %i\n" :empty-lines 1)
         ("2" "Task@quadrant2"  entry (file+headline org-agenda-file-task "Task&quadrant2")  "* TODO [#B] %? :2Quadrant:\n SCHEDULED: %T\n %i\n" :empty-lines 1)
         ("3" "Task@quadrant3"  entry (file+headline org-agenda-file-task "Task&quadrant3")  "* TODO [#C] %? :3Quadrant:\n SCHEDULED: %T\n %i\n" :empty-lines 1)
-        ("w" "Task@work&Goal"  entry (file+headline org-agenda-file-task "Task@work&goal")  "* TODO [#C] %?            \n SCHEDULED: %T\n %i\n" :empty-lines 1)
+        ;; ("w" "Task@work&Goal"  entry (file+headline org-agenda-file-task "Task@work&goal")  "* TODO [#A] %?            \n SCHEDULED: %T\n %i\n" :empty-lines 1)
         ("o" "Task@others"     entry (file+headline org-agenda-file-task "Task@others")     "* TODO [#C] %?            \n SCHEDULED: %T\n %i\n" :empty-lines 1)
         ("t" "Learning@tools"  entry (file+headline org-agenda-file-task "Learning@tools")  "* TODO [#D] %?            \n SCHEDULED: %T\n %i\n" :empty-lines 1)
-        ("n" "Notes"           entry (file+headline org-agenda-file-note "QuickNotes") "* TODO [#C] %t %? :Inbox:\n %i\n"          :empty-lines 1)
-        ("i" "Ideas"           entry (file+headline org-agenda-file-note "QuickIdeas") "* TODO [#C] %t %? :Inbox:\n %i\n"          :empty-lines 1)
+
+        ;; ("n" "Notes"           entry (file+headline org-agenda-file-note "QuickNotes") "* [#C] %t %? :Inbox:\n %i\n"     :empty-lines 1)
+        ;; ("i" "Ideas"           entry (file+headline org-agenda-file-note "QuickIdeas") "* %t %? :Inbox:\n %i\n"          :empty-lines 1)
+        ("n" "Notes"           entry (file+headline org-agenda-file-note "QuickNotes") "* %t %? \n %i\n"     :empty-lines 1)
+        ("i" "Ideas"           entry (file+headline org-agenda-file-note "QuickIdeas") "* %t %? \n %i\n"     :empty-lines 1)
 
         ("W" "Proj@work"     entry (file+headline org-agenda-file-project "Proj@work")   "* TODO [#B] [/] %? \n CREATED: %T\n %i\n"     :empty-lines 1)
         ("R" "Proj@read"     entry (file+headline org-agenda-file-project "Proj@read")   "* TODO [#D] %?     \n CREATED: %T\n %i\n"     :empty-lines 1)
@@ -120,8 +130,11 @@
 (setq org-agenda-files (list (concat refine-directory "GTD/task.org")
                              (concat refine-directory "GTD/note.org")
                              (concat refine-directory "GTD/project.org")
-			     ;; "E:/Refine/GTD/finished.org"
 			     ))
+
+(setq org-agenda-diary-file (concat refine-directory "GTD/diary.org")
+      diary-file (concat refine-directory "GTD/diary.org"))
+
 ;; (setq org-refile-targets  '((org-agenda-file-finished :maxlevel . 2)
 ;;                             ;; (org-agenda-file-canceled :maxlevel . 9)
 ;;                            ))
@@ -156,16 +169,18 @@
 ;;; Archive --------------------------------------------------------------------------
 ;;; Command: C-c C-x C-s
 ;;location for archive
-(setq org-archive-location (concat refine-directory "GTD/_archive/" (format-time-string "%Y%m") "_archive.org::datetree/* Archive from %s"))
+(setq org-archive-location
+      (concat refine-directory "GTD/_archive/"
+              (format-time-string "%Y%m") "_archive.org::datetree/* Archive from %s"))
 ;;information added to property when a subtree is moved
 (setq org-archive-save-context-info '(time file ltags itags todo category olpath))
 
 ;;; org-mobile -------------------------------------------------------------------------
 (setq org-mobile-directory  (concat refine-directory "GTD/MobileOrg/"))
 (setq org-mobile-encryption-tempfile (concat org-mobile-directory "orgtmpcrypt") )
-     (unless (file-exists-p org-mobile-encryption-tempfile)
-       (shell-command (concat "touch "
-                              org-mobile-encryption-tempfile)))
+(unless (file-exists-p org-mobile-encryption-tempfile)
+  (shell-command (concat newencryption org-mobile-encryption-tempfile))
+  )
 
 (setq org-mobile-files org-agenda-files)
 ;; (setq org-mobile-files (list (concat refine-directory "GTD/")))
@@ -173,9 +188,6 @@
 ;; (setq org-mobile-inbox-for-pull (concat refine-directory "GTD/from-mobile.org"))
 ;;      (unless (file-exists-p org-mobile-inbox-for-pull)
 ;;        (shell-command (concat "touch " org-mobile-inbox-for-pull)))
-
-(global-set-key "\C-cmp" 'org-mobile-push)
-(global-set-key "\C-cml" 'org-mobile-pull)
 
 ;; sync on emacs init(pull) or exit(push)
 (add-hook 'after-init-hook 'org-mobile-pull)

@@ -1,0 +1,24 @@
+* Feed                                                               :elfeed:
+** Weibo                                                            :elfeed:
+*** Important                                                   :important:
+**** [[https://rssfeed.today/weibo/rss/6393953260][卢献星微博]]
+
+** Economic                                                      :economic:
+*** [[https://rssfeed.today/weibo/rss/1642088277][财经网微博]]                  
+*** [[https://rssfeed.today/weibo/rss/2868676035][财联社微博]]
+*** [[https://rssfeed.today/weibo/rss/2258727970][央视财经微博]]
+
+** Polotics                                                      :politics:
+*** [[http://feedmaker.kindle4rss.com/feeds/china-politics.economist.com.xml][ChinaPolitics]]
+
+** Tools                                                             :tool:
+*** https://feed.iplaysoft.com/
+
+** Cognition                                                    :cognition:
+
+** Blogs                                                             :blog:
+*** [[https://feeds.feedburner.com/ruanyifeng][ruanyf]]
+
+** Emacs                                                            :emacs:
+*** [[https://jherrlin.github.io/index.xml][jherrlin]]
+*** [[https://www.masteringemacs.org/feed][MasteringEmacs]]

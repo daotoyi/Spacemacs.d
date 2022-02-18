@@ -1,0 +1,17 @@
+# -*- mode: snippet -*-
+# name: org-export-pdf
+# key: oep
+# --
+#+TITLE: $1
+# #+EXPORT_FILE_NAME: $2
+#+AUTHOR: SHI WENHUA
+#+DATE: \today
+#+EMAIL: whshi@techyauld.com
+#+KEYWORDS: $3
+#+LaTeX_CLASS: article-prefer
+#+OPTIONS: H:4 num:t toc:t
+#+OPTIONS: creator:t @:t ^:t |:t f:t todo:t <:t *:t Tex:t email:t
+#+PROPERTY: CLOCK_INTO_DRAWER t
+\newpage
+
+$0

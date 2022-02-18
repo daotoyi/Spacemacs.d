@@ -16,8 +16,6 @@
 (setq org-latex-compiler "xelatex")
 (setq org-confirm-babel-evaluate nil)
 
-
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; org-latex-classes ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; org-export latex
 ;; above 16 usepackage commonly used mostly.
@@ -64,14 +62,16 @@
                 \\usepackage{textcomp}
                 \\usepackage{amssymb}
                 \\usepackage{capt-of}
-                
+                \\usepackage{lscape}
+
                 \\usepackage{ctex}
                 \\usepackage{geometry}
+                \\geometry{top=2cm,bottom=2cm,right=2cm,left=2.5cm}
                 \\setcounter{secnumdepth}{3}
                 \\setlength{\\parindent}{2em}
                 \\setlength{\\parskip}{1ex}
                 \\usepackage[colorlinks,linkcolor=black,anchorcolor=blue,citecolor=cyan]{hyperref}
-                
+
                 \\usepackage{xcolor}
                 \\usepackage{framed}
                 \\usepackage{lipsum}
@@ -83,8 +83,8 @@
                     boxsep = 0pt, left = 1pt, right = 1pt, top = 2pt, bottom = 2pt,
                     boxrule = 0pt}
 
-                [NO-DEFAULT-PACKAGES]      
-                [PACKAGES]                 
+                [NO-DEFAULT-PACKAGES]
+                [PACKAGES]
                 [EXTRA]"
 	       ("\\section{%s}" . "\\section*{%s}")
                ("\\subsection{%s}" . "\\subsection*{%s}")
@@ -94,74 +94,74 @@
 
 ;; dissertation template
 (add-to-list 'org-latex-classes
-	       '("dissertation"
-		 "\\documentclass[UTF8,twoside,a4paper,12pt,openright]{ctexrep}
-                  \\setcounter{secnumdepth}{4}
-                  \\usepackage[linkcolor=blue,citecolor=blue,backref=page]{hyperref}
-                  \\hypersetup{hidelinks}
-                  \\usepackage{xeCJK}
-                  \\usepackage{fontspec}
-                  \\setCJKmainfont{SimSun}
-                  \\setCJKmonofont{SimSun}
-                  \\setCJKfamilyfont{kaiti}{KaiTi}
-                  \\newcommand{\\KaiTi}{\\CJKfamily{kaiti}}
-                  \\setmainfont{Times New Roman}
-                  \\usepackage[namelimits]{amsmath}
-                  \\usepackage{amssymb}
-                  \\usepackage{mathrsfs}
-                  \\newcommand{\\chuhao}{\\fontsize{42.2pt}{\\baselineskip}\\selectfont}
-                  \\newcommand{\\xiaochu}{\\fontsize{36.1pt}{\\baselineskip}\\selectfont}
-                  \\newcommand{\\yihao}{\\fontsize{26.1pt}{\\baselineskip}\\selectfont}
-                  \\newcommand{\\xiaoyi}{\\fontsize{24.1pt}{\\baselineskip}\\selectfont}
-                  \\newcommand{\\erhao}{\\fontsize{22.1pt}{\\baselineskip}\\selectfont}
-                  \\newcommand{\\xiaoer}{\\fontsize{18.1pt}{\\baselineskip}\\selectfont}
-                  \\newcommand{\\sanhao}{\\fontsize{16.1pt}{\\baselineskip}\\selectfont}
-                  \\newcommand{\\xiaosan}{\\fontsize{15.1pt}{\\baselineskip}\\selectfont}
-                  \\newcommand{\\sihao}{\\fontsize{14.1pt}{\\baselineskip}\\selectfont}
-                  \\newcommand{\\xiaosi}{\\fontsize{12.1pt}{\\baselineskip}\\selectfont}
-                  \\newcommand{\\wuhao}{\\fontsize{10.5pt}{\\baselineskip}\\selectfont}
-                  \\newcommand{\\xiaowu}{\\fontsize{9.0pt}{\\baselineskip}\\selectfont}
-                  \\newcommand{\\liuhao}{\\fontsize{7.5pt}{\\baselineskip}\\selectfont}
-                  \\newcommand{\\xiaoliu}{\\fontsize{6.5pt}{\\baselineskip}\\selectfont}
-                  \\newcommand{\\qihao}{\\fontsize{5.5pt}{\\baselineskip}\\selectfont}
-                  \\newcommand{\\bahao}{\\fontsize{5.0pt}{\\baselineskip}\\selectfont}
-                  \\usepackage{color}
-                  \\usepackage{geometry}
-                  \\geometry{top=2cm,bottom=2cm,right=2cm,left=2.5cm}
-                  \\geometry{headsep=0.5cm}
-                  \\usepackage{setspace}
-                  \\setlength{\\baselineskip}{22pt}
-                  \\setlength{\\parskip}{0pt}
-                  \\usepackage{enumerate}
-                  \\usepackage{enumitem}
-                  \\setenumerate[1]{itemsep=0pt,partopsep=0pt,parsep=\\parskip,topsep=5pt}
-                  \\setitemize[1]{itemsep=0pt,partopsep=0pt,parsep=\\parskip,topsep=5pt}
-                  \\setdescription{itemsep=0pt,partopsep=0pt,parsep=\\parskip,topsep=5pt}
-                  \\usepackage{fancyhdr}
-                        \\pagestyle{fancy}
-                        \\fancyhead{}
-                        \\fancyhead[CE]{\\KaiTi \\wuhao xxxx}
-                        \\fancyhead[CO]{\\KaiTi \\wuhao xxxxxx}
-                        \\fancypagestyle{plain}{\\pagestyle{fancy}}
-                  \\ctexset{contentsname=\\heiti{目{\\quad}录}}
-                  \\ctexset{section={format=\\raggedright}}
-                  \\usepackage{titlesec}
-                        \\titleformat{\\chapter}[block]{\\normalfont\\xiaoer\\bfseries\\centering\\heiti}{第{\\zhnumber{\\thechapter}}章}{10pt}{\\xiaoer}
-                        \\titleformat{\\section}[block]{\\normalfont\\xiaosan\\bfseries\\heiti}{\\thesection}{10pt}{\\xiaosan}
-                        \\titleformat{\\subsection}[block]{\\normalfont\\sihao\\bfseries\\heiti}{\\thesubsection}{10pt}{\\sihao}
-                        \\titleformat{\\subsubsection}[block]{\\normalfont\\sihao\\bfseries\\heiti}{\\thesubsubsection}{10pt}{\\sihao}
-                        \\titlespacing{\\chapter} {0pt}{-22pt}{0pt}{}
-                        \\titlespacing{\\section} {0pt}{0pt}{0pt}
-                        \\titlespacing{\\subsection} {0pt}{0pt}{0pt}
-                        \\titlespacing{\\subsubsection} {0pt}{0pt}{0pt}
-                  \\usepackage[super,square,numbers,sort&compress]{natbib}
-                  \\usepackage{graphicx}
-                  \\usepackage{subfigure}
-                  \\usepackage{caption}
-                  \\captionsetup{font={small}}
-                  [NO-DEFAULT-PACKAGES]
-                  [NO-PACKAGES]
-                  [EXTRA]"
+	           '("dissertation"
+		           "\\documentclass[UTF8,twoside,a4paper,12pt,openright]{ctexrep}
+                \\setcounter{secnumdepth}{4}
+                \\usepackage[linkcolor=blue,citecolor=blue,backref=page]{hyperref}
+                \\hypersetup{hidelinks}
+                \\usepackage{xeCJK}
+                \\usepackage{fontspec}
+                \\setCJKmainfont{SimSun}
+                \\setCJKmonofont{SimSun}
+                \\setCJKfamilyfont{kaiti}{KaiTi}
+                \\newcommand{\\KaiTi}{\\CJKfamily{kaiti}}
+                \\setmainfont{Times New Roman}
+                \\usepackage[namelimits]{amsmath}
+                \\usepackage{amssymb}
+                \\usepackage{mathrsfs}
+                \\newcommand{\\chuhao}{\\fontsize{42.2pt}{\\baselineskip}\\selectfont}
+                \\newcommand{\\xiaochu}{\\fontsize{36.1pt}{\\baselineskip}\\selectfont}
+                \\newcommand{\\yihao}{\\fontsize{26.1pt}{\\baselineskip}\\selectfont}
+                \\newcommand{\\xiaoyi}{\\fontsize{24.1pt}{\\baselineskip}\\selectfont}
+                \\newcommand{\\erhao}{\\fontsize{22.1pt}{\\baselineskip}\\selectfont}
+                \\newcommand{\\xiaoer}{\\fontsize{18.1pt}{\\baselineskip}\\selectfont}
+                \\newcommand{\\sanhao}{\\fontsize{16.1pt}{\\baselineskip}\\selectfont}
+                \\newcommand{\\xiaosan}{\\fontsize{15.1pt}{\\baselineskip}\\selectfont}
+                \\newcommand{\\sihao}{\\fontsize{14.1pt}{\\baselineskip}\\selectfont}
+                \\newcommand{\\xiaosi}{\\fontsize{12.1pt}{\\baselineskip}\\selectfont}
+                \\newcommand{\\wuhao}{\\fontsize{10.5pt}{\\baselineskip}\\selectfont}
+                \\newcommand{\\xiaowu}{\\fontsize{9.0pt}{\\baselineskip}\\selectfont}
+                \\newcommand{\\liuhao}{\\fontsize{7.5pt}{\\baselineskip}\\selectfont}
+                \\newcommand{\\xiaoliu}{\\fontsize{6.5pt}{\\baselineskip}\\selectfont}
+                \\newcommand{\\qihao}{\\fontsize{5.5pt}{\\baselineskip}\\selectfont}
+                \\newcommand{\\bahao}{\\fontsize{5.0pt}{\\baselineskip}\\selectfont}
+                \\usepackage{color}
+                \\usepackage{geometry}
+                \\geometry{top=2cm,bottom=2cm,right=2cm,left=2.5cm}
+                \\geometry{headsep=0.5cm}
+                \\usepackage{setspace}
+                \\setlength{\\baselineskip}{22pt}
+                \\setlength{\\parskip}{0pt}
+                \\usepackage{enumerate}
+                \\usepackage{enumitem}
+                \\setenumerate[1]{itemsep=0pt,partopsep=0pt,parsep=\\parskip,topsep=5pt}
+                \\setitemize[1]{itemsep=0pt,partopsep=0pt,parsep=\\parskip,topsep=5pt}
+                \\setdescription{itemsep=0pt,partopsep=0pt,parsep=\\parskip,topsep=5pt}
+                \\usepackage{fancyhdr}
+                      \\pagestyle{fancy}
+                      \\fancyhead{}
+                      \\fancyhead[CE]{\\KaiTi \\wuhao xxxx}
+                      \\fancyhead[CO]{\\KaiTi \\wuhao xxxxxx}
+                      \\fancypagestyle{plain}{\\pagestyle{fancy}}
+                \\ctexset{contentsname=\\heiti{目{\\quad}录}}
+                \\ctexset{section={format=\\raggedright}}
+                \\usepackage{titlesec}
+                    \\titleformat{\\chapter}[block]{\\normalfont\\xiaoer\\bfseries\\centering\\heiti}{第{\\zhnumber{\\thechapter}}章}{10pt}{\\xiaoer}
+                      \\titleformat{\\section}[block]{\\normalfont\\xiaosan\\bfseries\\heiti}{\\thesection}{10pt}{\\xiaosan}
+                      \\titleformat{\\subsection}[block]{\\normalfont\\sihao\\bfseries\\heiti}{\\thesubsection}{10pt}{\\sihao}
+                      \\titleformat{\\subsubsection}[block]{\\normalfont\\sihao\\bfseries\\heiti}{\\thesubsubsection}{10pt}{\\sihao}
+                      \\titlespacing{\\chapter} {0pt}{-22pt}{0pt}{}
+                      \\titlespacing{\\section} {0pt}{0pt}{0pt}
+                      \\titlespacing{\\subsection} {0pt}{0pt}{0pt}
+                      \\titlespacing{\\subsubsection} {0pt}{0pt}{0pt}
+                \\usepackage[super,square,numbers,sort&compress]{natbib}
+                \\usepackage{graphicx}
+                \\usepackage{subfigure}
+                \\usepackage{caption}
+                \\captionsetup{font={small}}
+                [NO-DEFAULT-PACKAGES]
+                [NO-PACKAGES]
+                [EXTRA]"
 		 ("\\chapter{%s}" . "\\chapter*{%s}")
 		 ("\\section{%s}" . "\\section*{%s}")
 		 ("\\subsection{%s}" . "\\subsection*{%s}")

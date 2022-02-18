@@ -1,0 +1,20 @@
+# -*- mode: snippet -*-
+# name: org-blog-hugo-header
+# key: obhh
+# --
+#+title: `(file-name-nondirectory buffer-file-name)`
+#+subtitle: $1
+#+author: daoyi
+#+date: `(format-time-string "%Y-%m-%dT%H:%M:$S+08:00")`
+#+lastmod: `(format-time-string "%Y-%m-%dT%H:%M:$S+08:00")`
+#+tags[]: $2
+#+categories[]: $3
+#+keywords[]: 
+#+draft: false
+#+autoCollapseToc: false
+
+# #above can't work in loveit theme.
+# #+toc: true
+# #+comment: true
+
+* $0
