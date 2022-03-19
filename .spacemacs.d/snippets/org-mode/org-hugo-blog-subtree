@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: org-hugo-blog-subtree
+# key: ohblog
+# --
+
+:PROPERTIES:
+:EXPORT_FILE_NAME: $1
+:EXPORT_DESCRIPTION:
+:END:
+
+$0

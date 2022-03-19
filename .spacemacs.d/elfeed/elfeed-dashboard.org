@@ -1,0 +1,46 @@
+* Basics
+
+ [U] Update Elfeed
+ [S] Search
+ [E] Edit
+ [g] Refresh counts
+ [q] Kill dashboard
+
+* Bookmarks
+
+ [s] Starred         ([[elfeed:+starred][   0]])
+ [r] Recent          ([[elfeed:-unread][  25]])
+ [u] Unread          ([[elfeed:+unread][ 153]]/[[elfeed:][ 178]])
+ [b] Blogs           ([[elfeed:+unread +blog][   0]]/[[elfeed:+blog][   0]])
+ [c] Cognition       ([[elfeed:+unread +cognition][   4]]/[[elfeed:+cognition][   9]])
+ [e] Economic        ([[elfeed:+unread +emacs][  15]]/[[elfeed:+emacs][  15]])
+ [E] Emacs           ([[elfeed:+unread +emacs][  15]]/[[elfeed:+emacs][  15]])
+ [p] PLanguage       ([[elfeed:+unread +pl][   0]]/[[elfeed:+pl][   0]])
+ [w] Weibo           ([[elfeed:+unread +weibo][9999]]/[[elfeed:+weibo][9999]])
+   - [i] important   ([[elfeed:+unread +important][9999]]/[[elfeed:+important][9999]])
+ [t] Tool            ([[elfeed:+unread +tool][  58]]/[[elfeed:+tool][  61]])
+ [n] News            ([[elfeed:+unread +news][   0]]/[[elfeed:+news][   0]])
+
+* Configuration
+  :PROPERTIES:
+  :VISIBILITY: hideall
+  :END:
+
+  Press "E" to edit and M-x elfeed-dashboard-mode to go back
+
+  #+STARTUP: showall showstars indent
+  #+KEYMAP: s | elfeed-dashboard-query "+starred"
+  #+KEYMAP: r | elfeed-dashboard-query "-unread"
+  #+KEYMAP: u | elfeed-dashboard-query "+unread"
+  #+KEYMAP: c | elfeed-dashboard-query "+unread +cognition"
+  #+KEYMAP: b | elfeed-dashboard-query "+unread +blog"
+  #+KEYMAP: E | elfeed-dashboard-query "+unread +emacs"
+  #+KEYMAP: e | elfeed-dashboard-query "+unread +economic"
+  #+KEYMAP: n | elfeed-dashboard-query "+unread +news"
+  #+KEYMAP: wi | elfeed-dashboard-query "+unread +weibo +important"
+  #+KEYMAP: t | elfeed-dashboard-query "+unread +tool"
+  #+KEYMAP: S | elfeed
+  #+KEYMAP: g | elfeed-dashboard-update-links
+  #+KEYMAP: U | elfeed-dashboard-update
+  #+KEYMAP: E | elfeed-dashboard-edit
+  #+KEYMAP: q | kill-current-buffer

@@ -617,12 +617,13 @@ before packages are loaded."
     :mode occur-mode)
 
   ;; -----------------------------------------------------------------------
+  ;; (evil-set-initial-state 'elfeed-dashboard-mode 'emacs)
   ;; elfeed face.
-  (defface important-elfeed-entry '((t :foreground "red")) ;; #f77
+  (defface important-elfeed-entry '((t :foreground "red"))
     "Marks an important Elfeed entry.")
   (push '(important important-elfeed-entry) elfeed-search-face-alist)
 
-  (defface tool-elfeed-entry '((t :foreground "#1e90ff"))
+  (defface tool-elfeed-entry '((t :foreground "#1e90ff")) ;; blue
     "Marks tool entry")
   (push '(tool tool-elfeed-entry) elfeed-search-face-alist)
 

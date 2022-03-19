@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: markdown-fold 
+# key: mdfold
+# --
+
+<details>
+<summary><code><strong>「 click to unflod 」</strong></code></summary>
+
+$0
+
+</details>

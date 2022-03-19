@@ -226,10 +226,11 @@ Each entry is either:
   (use-package easy-hugo
     :init
     (setq easy-hugo-default-ext ".org")
-    (setq easy-hugo-basedir "E:/Refine/daotoyi.github.io/Blog/"
+    (setq easy-hugo-basedir "E:/Refine/GithubPages/Blog/"
+    ;; (setq easy-hugo-basedir "E:/Refine/daotoyi.github.io/FIRE/"
 	        easy-hugo-url "https://daotoyi.github.io")
-    ;; (unless (file-exists-p easy-hugo-basedir)
-    ;;   (make-directory easy-hugo-basedir))
+    (unless (file-exists-p easy-hugo-basedir)
+      (make-directory easy-hugo-basedir))
 
     ;; (setq easy-hugo-bloglist
     ;;       '(;; blog for github pages
@@ -294,7 +295,7 @@ Each entry is either:
   (use-package elfeed-dashboard
     :ensure t
     :config
-    (setq elfeed-dashboard-file "~/elfeed-dashboard.org")
+    (setq elfeed-dashboard-file "~/.spacemacs.d/elfeed/elfeed-dashboard.org")
     ;; update feed counts on elfeed-quit
     (advice-add 'elfeed-search-quit-window :after #'elfeed-dashboard-update-links)
   ))

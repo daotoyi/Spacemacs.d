@@ -1,20 +1,34 @@
 * Feed                                                               :elfeed:
-** Weibo                                                            :elfeed:
+** Weibo                                                            :weibo:
 *** Important                                                   :important:
-**** [[https://rssfeed.today/weibo/rss/6393953260][卢献星微博]]
+**** [[https://rssfeed.today/weibo/rss/6393953260][WB: 卢献星]]
 
-** Economic                                                      :economic:
-*** [[https://rssfeed.today/weibo/rss/1642088277][财经网微博]]                  
-*** [[https://rssfeed.today/weibo/rss/2868676035][财联社微博]]
-*** [[https://rssfeed.today/weibo/rss/2258727970][央视财经微博]]
-
-** Polotics                                                      :politics:
-*** [[http://feedmaker.kindle4rss.com/feeds/china-politics.economist.com.xml][ChinaPolitics]]
+** Economic                                                       :economic:
+*** [[https://rssfeed.today/weibo/rss/2868676035][WB: 财联社]]
+*** [[https://github.com/hellodword/wechat-feeds/raw/feeds/MzUxNjY3NDc1NQ==.xml][WX: 三石观察]] 
 
 ** Tools                                                             :tool:
-*** https://feed.iplaysoft.com/
+# *** [[https://feed.iplaysoft.com/][异次元软件]]
 
 ** Cognition                                                    :cognition:
+*** [[https://github.com/hellodword/wechat-feeds/raw/feeds/MzI2NDA5NDUxMw==.xml][WX: AI财经社]]
+*** [[https://github.com/hellodword/wechat-feeds/raw/feeds/Mzg4NDI1MzU2MQ==.xml][WX: AP投资洞察]]
+*** [[https://github.com/hellodword/wechat-feeds/raw/feeds/MjM5NjM5MjQ4MQ==.xml][WX: 刘润]]
+*** [[https://api.feeddd.org/feeds/61f457eddca58a380c5046ee][WX: https://api.feeddd.org/feeds/61f457eddca58a380c5046ee]]
+
+
+** Options                                                        :options:
+*** [[https://github.com/hellodword/wechat-feeds/raw/feeds/MzA4MTMyNjIyNw==.xml][WX: 期权世界]] 
+*** [[https://api.feeddd.org/feeds/61b8c078dca58a380c2df6de][WX: 三思期权]]
+*** [[https://api.feeddd.org/feeds/615e555c1269c358aa165e67][WX: 力的期权工作室]]
+*** [[https://api.feeddd.org/feeds/616054d69b888e41f5cb17be/rss][WX: 上交所期权之家]] 
+
+** Quant                                                            :quant:
+*** [[https://github.com/hellodword/wechat-feeds/raw/feeds/MzA5MzU0MzgzMQ==.xml][WX: 期权期指量化]]
+
+** USA/HK
+*** [[https://github.com/hellodword/wechat-feeds/raw/feeds/Mzg3NDQ2MzUzMw==.xml][WX: 美港电讯]]
+*** [[https://mail.google.com/mail/u/0/feed/atom][Gmail]]
 
 ** Blogs                                                             :blog:
 *** [[https://feeds.feedburner.com/ruanyifeng][ruanyf]]
@@ -22,3 +36,7 @@
 ** Emacs                                                            :emacs:
 *** [[https://jherrlin.github.io/index.xml][jherrlin]]
 *** [[https://www.masteringemacs.org/feed][MasteringEmacs]]
+
+** Polotics                                                      :politics:
+# *** [[http://feedmaker.kindle4rss.com/feeds/china-politics.economist.com.xml][ChinaPolitics]]
+

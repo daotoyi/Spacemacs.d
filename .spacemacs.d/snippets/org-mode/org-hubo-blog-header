@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: org-blog-hugo-header
-# key: obhh
+# key: ohbh
 # --
 #+title: `(file-name-nondirectory buffer-file-name)`
 #+subtitle: $1

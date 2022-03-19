@@ -36,6 +36,8 @@
 (global-set-key "\C-cc" 'org-capture)
 ;; (global-set-key "\C-cb" 'org-iswitchb)   ;; switch between org-mode buffers.(obsolete)
 
+;; other
+(global-set-key (kbd "C-c C-j") 'dired-up-directory)
 
 ;; --------------------------------------------------------------------------------------------
 (general-define-key
@@ -58,6 +60,7 @@
 ;; --------------------------------------------------------------------------------------------
 ;; spacemacs/set-leader-keys:
 (spacemacs/set-leader-keys
+  "ard" 'elfeed-dashboard
   "amb" 'bongo
   "ame" 'emms
   "amp" 'emms-play-directory
@@ -87,6 +90,7 @@
   "oho" 'helm-occur
 
   "omi" 'iimage-mode
+  "omj" 'javascript-mode
   "oml" 'lisp-interaction-mode
   "omm" 'markdown-mode
   "omc" 'occur-mode

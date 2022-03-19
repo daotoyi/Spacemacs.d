@@ -27,11 +27,6 @@
 			         ))
 	    )
 
-;; suppress (dired)warning and skip setup silently
-(setq dired-quick-sort-setup t)
-(setq dired-quick-sort-suppress-setup-warning t)
-
-(defalias 'yes-or-no-p 'y-or-n-p)
 
 ;;(setq mouse-yank-at-point t)
 (mouse-avoidance-mode 'animate)
@@ -46,6 +41,8 @@
 ;; all backups goto ~/.backups instead in the current directory
 (setq backup-directory-alist (quote (("." . "e:/TMP/TmpFiles"))))
 
+;; Dired
+;; -----------------------------------------------------------------------
 ;; dired, show file(.org) with yellow in buffer.
 ;; (setq dired-recursive-deletes 'always)
 ;; (setq dired-recursive-copies 'always)
@@ -53,10 +50,19 @@
           (lambda ()
             (highlight-lines-matching-regexp "\.org$" 'hi-yellow)))
 
+;; suppress (dired)warning and skip setup silently
+(setq dired-quick-sort-setup t)
+(setq dired-quick-sort-suppress-setup-warning t)
+
+(defalias 'yes-or-no-p 'y-or-n-p)
 (setq initial-major-mode 'lisp-interaction-mode  ;; spacemacs default text-mode
       initial-scratch-message
       "\n;; Configuration by <gitee.com/daotoyi/spacemacs.d>.\n;; Enjoy!\n\n")
 
+;; dired-mode always occupy a buffer
+(put 'dired-find-alternate-file 'disabled nil)
+(with-eval-after-load 'dired
+  (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file))
 ;; -----------------------------------------------------------------------
 ;; org
 ;; -----------------------------------------------------------------------
@@ -67,6 +73,7 @@
 ;; highlight in code-block
 (setq org-src-fontify-natively t)
 ;; (evil-set-initial-state 'calendar-mode 'emacs)
+;; (evil-set-initial-state 'dired-mode 'emacs)
 
 ;; calendar
 ;; --------------------------------------------------------------------------------------------

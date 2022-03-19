@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: org-hugo-book-subtree
+# key: ohbook
+# --
+
+:PROPERTIES:
+:EXPORT_HUGO_SECTION: docs/$1/
+:EXPORT_FILE_NAME: $2
+:EXPORT_DESCRIPTION:
+:END:
+
+$0

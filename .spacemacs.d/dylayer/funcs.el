@@ -22,8 +22,8 @@
             "css"
             "ditaa"
             "sqlite"
+            "js"
             ;; "java"
-            ;; "js"
             ;; "dot"
             ;; "gnuplot"
             ;; "R"
@@ -137,7 +137,7 @@
   (interactive)
   (dired my-refine-path))
 
-(defconst my-blog-path "e:/refine/daotoyi.github.io/OrgBlog/" "My Blog dir")
+(defconst my-blog-path "e:/Refine/GithubPages/OrgBlog/" "My Blog dir")
 (defun dy/goto-blog-dir ()
   (interactive)
   (dired my-blog-path))
@@ -183,11 +183,11 @@ See `org-capture-templates' for more information."
                    "%?\n")          ;Place the cursor here finally
                  "\n")))
 
-  (setq org-blog-posts (expand-file-name "E:/Refine/daotoyi.github.io/OrgBlog/post-box.org" refine-directory))
+  (setq org-blog-posts (expand-file-name "E:/Refine/GithubPages/OrgBlog/post-box.org" refine-directory))
   (add-to-list 'org-capture-templates
                '("h"                ;`org-capture' binding + h
                  "Hugo post"
-                 entry (file+olp "E:/Refine/daotoyi.github.io/OrgBlog/blog-capture.org" "BlogInbox")
+                 entry (file+olp "E:/Refine/GithubPages/OrgBlog/blog-capture.org" "BlogInbox")
                  (function org-hugo-new-subtree-post-capture-template)
                  ;; It is assumed that below file is present in `org-directory'
                  ;; and that it has a "Blog Ideas" heading. It can even be a
