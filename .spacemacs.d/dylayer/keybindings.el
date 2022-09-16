@@ -89,6 +89,7 @@
 
   "oho" 'helm-occur
 
+  "omb" 'org-beamer-mode
   "omi" 'iimage-mode
   "omj" 'javascript-mode
   "oml" 'lisp-interaction-mode
@@ -96,6 +97,7 @@
   "omc" 'occur-mode
   "omo" 'org-mode
   "oms" 'shell-script-mode
+  "omS" 'super-save-mode
   "omt" 'conf-toml-mode
 
   "osg" 'counsel-git-grep

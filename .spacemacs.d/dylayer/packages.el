@@ -160,6 +160,9 @@ Each entry is either:
    (require 'init-org)
    ;; (require 'init-roll)
 
+   ;; (setq org-startup-folded 'overview)
+   (setq org-startup-folded t) ;; overview
+
    ;; don't work conflict with yasnipptes.
    ;; (require 'ox-publish)
 
@@ -453,7 +456,7 @@ Each entry is either:
     :config
     (super-save-mode +1)
     (setq auto-save-default nil)
-    (setq super-save-auto-save-when-idle t)
+    ;; (setq super-save-auto-save-when-idle t)
     ;; (setq super-save-idle-duration 5) ; interval
     ))
 

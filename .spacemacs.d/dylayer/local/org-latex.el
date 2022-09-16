@@ -28,19 +28,19 @@
                 \\usepackage{xeCJK}
                 \\usepackage{fixltx2e}
                 \\usepackage{longtable}
-                \\usepackage{float}        
-                \\usepackage{tikz}         
-                \\usepackage{wrapfig}      
+                \\usepackage{float}
+                \\usepackage{tikz}
+                \\usepackage{wrapfig}
                 \\usepackage{latexsym,amssymb,amsmath}
                 \\usepackage{textcomp}
-                \\usepackage{listings}     
-                \\usepackage{marvosym}     
-                \\usepackage{textcomp}     
-                \\usepackage{latexsym}     
-                \\usepackage{natbib}       
-                \\usepackage{geometry}     
-                [NO-DEFAULT-PACKAGES]      
-                [PACKAGES]                 
+                \\usepackage{listings}
+                \\usepackage{marvosym}
+                \\usepackage{textcomp}
+                \\usepackage{latexsym}
+                \\usepackage{natbib}
+                \\usepackage{geometry}
+                [NO-DEFAULT-PACKAGES]
+                [PACKAGES]
                 [EXTRA]"
 	       ("\\section{%s}" . "\\section*{%s}")
 	       ("\\subsection{%s}" . "\\subsection*{%s}")

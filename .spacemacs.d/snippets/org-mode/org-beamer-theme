@@ -1,0 +1,20 @@
+# -*- mode: snippet -*-
+# name: org-beamer-theme
+# key: beamertheme
+# --
+
+#+BEAMER_THEME: CambridgeUS
+#+BEAMER_COLOR_THEME: default
+#+BEAMER_FONT_THEME:  default
+#+BEAMER_INNER_THEME: default
+#+BEAMER_OUTER_THEME: default
+#+BEAMER_HEADER: \definecolor{links}{HTML}{0000A0}
+#+BEAMER_HEADER: \hypersetup{colorlinks=,linkcolor=,urlcolor=links}
+#+BEAMER_HEADER: \setbeamertemplate{itemize items}[default]
+#+BEAMER_HEADER: \setbeamertemplate{enumerate items}[default]
+#+BEAMER_HEADER: \setbeamertemplate{items}[default]
+#+BEAMER_HEADER: \setbeamercolor*{local structure}{fg=darkred}
+#+BEAMER_HEADER: \setbeamercolor{section in toc}{fg=darkred}
+#+BEAMER_HEADER: \setlength{\parskip}{\smallskipamount}
+
+$0

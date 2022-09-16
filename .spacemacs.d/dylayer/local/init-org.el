@@ -6,15 +6,16 @@
   :defer nil
   :bind ("<f12>" . org-agenda)
   :config
-  (add-hook 'org-mode-hook 'show-alert)
   (require 'org-install)    ;; autoload function, not when start org.
+  (add-hook 'org-mode-hook 'show-alert)
+  (require 'beamer-alert)
   (require 'org-agenda-gtd)
   (require 'ox-latex)       ;; should be require before org-latex, define usepackage. 
   (require 'org-latex)
   (require 'org-beamer)     ;; should be required after org-latex
   (require 'ox-latex-chinese)
   (setq org-startup-indented t
-	org-src-fontify-natively t))		;; highlight
+        org-src-fontify-natively t))		;; highlight
 (when (eq system-type 'windows-nt)
   (setq refine-directory "E:/Refine/"
         org-directory "E:/Refine/Org/"
@@ -49,10 +50,10 @@
    (python . t)
    (latex . t)
    (emacs-lisp . t)
-   ;; (sh . t)
+   (js . t)
+   (shell . t)
    ;; (matlab . t)
    ;; (R . t)
-   ;; (js . t)
    ))
 ;;; org-todo ----------------------------------------------------------------------------
 
@@ -130,6 +131,8 @@
 (setq org-agenda-files (list (concat refine-directory "GTD/task.org")
                              (concat refine-directory "GTD/note.org")
                              (concat refine-directory "GTD/project.org")
+                             (concat refine-directory "GTD/orgzly.org")
+                             (concat refine-directory "GTD/MobileOrg/orgzly.org") ;; mobileorg push, sync with jianguoyun. 
 			     ))
 
 (setq org-agenda-diary-file (concat refine-directory "GTD/diary.org")
@@ -182,14 +185,14 @@
   (shell-command (concat newencryption org-mobile-encryption-tempfile))
   )
 
-(setq org-mobile-files org-agenda-files)
-;; (setq org-mobile-files (list (concat refine-directory "GTD/")))
+;; (setq org-mobile-files org-agenda-files)
+(setq org-mobile-files (list (concat refine-directory "GTD/")))
 (setq org-mobile-inbox-for-pull (concat refine-directory "GTD/from_mobile.org"))
 ;; (setq org-mobile-inbox-for-pull (concat refine-directory "GTD/from-mobile.org"))
 ;;      (unless (file-exists-p org-mobile-inbox-for-pull)
 ;;        (shell-command (concat "touch " org-mobile-inbox-for-pull)))
 
-;; sync on emacs init(pull) or exit(push)
+;; sync on emacs when init(pull) or exit(push)
 (add-hook 'after-init-hook 'org-mobile-pull)
 ;; (add-hook 'kill-emacs-hook 'org-mobile-push) 
 
@@ -246,7 +249,7 @@
 				   ("~" org-verbatim "<code>" "</code>" verbatim)
 				   ("+" (:strike-through t) "<del>" "</del>")
 				   ("@" org-warning "<b>" "</b>")))
-      org-export-latex-emphasis-alist (quote 
+      org-export-latex-emphasis-alist (quote
                                        (("*" "\\textbf{%s}" nil)
                                         ("/" "\\emph{%s}" nil) 
                                         ("_" "\\underline{%s}" nil)

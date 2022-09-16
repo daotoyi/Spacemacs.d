@@ -1,8 +1,12 @@
+%Email：wangmeiting92@gmail.com
 %=============导言区通用设置===============
+
 %%%=====主题设置*******
 %\usetheme{default}
-%\usetheme{CambridgeUS}
-%\usetheme{AnnArbor}
+%% \usetheme{CambridgeUS}   % red    space
+%% \usetheme{AnnArbor}      % yellow space
+%% \usetheme{Boadilla}      % purple theme
+%% \usetheme{Darmstadt}     % blue, top double item, overview
 \usetheme{Boadilla}
 \usefonttheme[onlymath]{serif}  				%设置数学公式字体为衬线字体
 \useoutertheme[subsection=false]{miniframes}
@@ -13,7 +17,7 @@
 %\setbeamertemplate{footline}[text line]{\hfill\strut\insertframenumber{} / \inserttotalframenumber}
 %在页面右下角添加“当前帧数 / 总帧数”，\strut表示生成一个宽度为0，总高度等于行距的不可见支柱
 \setbeamersize{text margin left=0.8cm, text margin right=0.8cm} %设置文字区域左右留白的宽度
-\setbeamertemplate{itemize subitem}{--}			%将无序列表的标志样式改为--(第二层)
+\setbeamertemplate{itemize subitem}{*}			%将无序列表的标志样式改为*(第二层)
 \setbeamertemplate{itemize item}[circle] 		%将无序列表的标志样式改为圆形(第一层)
 \setbeamertemplate{enumerate item}[circle] 	%将有序列表的标志样式改为圆形(第一层)
 \setbeamertemplate{section in toc}[circle] 	%设置section in toc为圆形包含数字
@@ -34,6 +38,7 @@
 \usepackage{calligra}								%手写字体
 \usepackage[T1]{fontenc}							%以实现更多的字体功能，如默认字体下的斜体加粗
 \usepackage{ifthen}
+\usepackage{xeCJK}                   %导入中文包
 
 %设置计数器
 \newcounter{mycntthm} %设置新的计数器
@@ -42,8 +47,8 @@
 \setcounter{mycntexam}{0}
 
 %开关设置
-\newcommand{\thmseriesnamestyle}{Chinese} %Chinese表示设置定理类名称为中文，English表示设置定理类名称为英文
-\newcommand{\thmseriesnumbering}{true} %true表示对定理类环境进行编号，false表示不对定理类环境进行编号
+\newcommand{\thmseriesnamestyle}{Chinese}	 %Chinese表示设置定理类名称为中文，English表示设置定理类名称为英文
+\newcommand{\thmseriesnumbering}{true}		 %true表示对定理类环境进行编号，false表示不对定理类环境进行编号
 
 \ifthenelse{\equal{\thmseriesnamestyle}{Chinese}}{%
 	\newcommand{\dfnname}{定义}
@@ -124,7 +129,6 @@
 {
 	\end{beamerboxesrounded}
 }
-
 \newenvironment{lemma}[1][]%引理环境
 {
 	\begin{beamerboxesrounded}[upper=myupthmcolor,lower=mylowthmcolor,shadow]{\lemmaname{} \mycntthm{} \ifthenelse{\equal{#1}{}}{}{(#1)}}\ifthenelse{\equal{\thmseriesnumbering}{true}}{\addtocounter{mycntthm}{-1}\refstepcounter{mycntthm}}{}

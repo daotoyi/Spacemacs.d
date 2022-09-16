@@ -1,0 +1,66 @@
+%% packages ------------------------------------
+\usepackage[UTF8,space,hyperref]{ctex}
+
+%% \usepackage{grffile}
+%% \usepackage[abs]{overpic}
+%% \usepackage{hyperref}
+%% \usepackage{rotating}
+%% \usepackage[none]{hyphenat}
+%% \usepackage{fontspec}
+%% \usepackage{textcomp}
+%% \usepackage{setspace}
+%% \usepackage{graphicx}
+%% \usepackage{wrapfig}
+%% \usepackage{capt-of}
+%% \usepackage{longtable}
+%% \usepackage[normalem]{ulem}
+%% \usepackage{amsmath}
+%% \usepackage{amssymb}
+%% \hypersetup{colorlinks=true,linkcolor=red}
+%% \usepackage[backend = biber, natbib=true, style = science, sorting = none]{biblatex}
+
+%% theme --------------------------------------
+\usetheme{Berlin}
+\usecolortheme{sustech}
+\useoutertheme{miniframes}
+\usefonttheme[onlymath]{serif}
+
+%% titile -----------------------------------------
+\title[BeamerTitle]{Beamer Business Template}
+\subtitle[option]{Unity of knowledge and action}
+\author{SHI WENHUA}
+\date{\today}
+\institute[daotoyi]{
+ Department of Customer Service\\
+ Beijing techyauld Technology Development Co. Ltd.\\
+ 6th Zone 2nd Floor, Building 21st, Zpark, Haidian District, Beijing 100193, P.R.China\\[1ex]
+ \texttt{wenhuas.shi@gmail.com}}
+
+%% other set ---------------------------------------
+%% table of contents show before each chapter.
+\AtBeginSection{\begin{frame}{Outline}
+\tableofcontents[currentsection]
+\end{frame} }
+%% or 
+%% \AtBeginSection[]
+%% {
+%% 	\begin{frame}<beamer>
+%% 	\frametitle{\textbf{目录}}
+%% 	\tableofcontents[currentsection]
+%% \end{frame}
+%% }
+
+%% every line Successive display
+\beamerdefaultoverlayspecification{<+->}
+
+%% bibliography 
+\AtBeginBibliography{\footnotesize}
+
+%% footnote
+\usepackage[absolute,overlay]{textpos}
+\newenvironment{reference}[2]{
+ \begin{textblock*}{
+    \textwidth}(#1,#2)
+    \footnotesize\it\bgroup\color{white!50!black}}{\egroup
+\end{textblock*}}"
+
