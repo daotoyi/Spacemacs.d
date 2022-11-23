@@ -596,8 +596,10 @@ before packages are loaded."
   ;; -----------------------------------------------------------------------
   ;; set prefixes in layers/+spacemacs/spacemacs-defaults/keybindings.el
   (setq spacemacs/key-binding-prefixes `((,dotspacemacs-emacs-command-key "M-x")
+                                         ("oB"   "bongo")
                                          ("od"   "dired-dir")
                                          ("oe"   "evil/multi-cursor")
+                                         ("oE"   "emms")
                                          ("oh"   "helm")
                                          ("om"   "major-mode")
                                          ("oo"   "org/occur")

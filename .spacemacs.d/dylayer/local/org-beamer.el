@@ -28,6 +28,7 @@
 (add-to-list 'org-latex-classes
              '("beamer-awesome"
                "\\documentclass[compress,xcolor=dvipsnames,svgnames,x11names,11pt,bigger,presentation,notheorems]{beamer}
+               \\input{D:/Program Files (x86)/Emacs/spacemacs-develop/.spacemacs.d/dylayer/option/latex-customize.tex}
                \\input{D:/Program Files (x86)/Emacs/spacemacs-develop/.spacemacs.d/dylayer/option/preface-for-beamer.tex}"
 
 	             ("\\section{%s}" . "\\section*{%s}")
@@ -41,6 +42,7 @@
 (add-to-list 'org-latex-classes
              '("beamer-business"
                "\\documentclass[compress,xcolor=dvipsnames,svgnames,x11names,10pt,bigger,presentation,notheorems]{beamer}
+               \\input{D:/Program Files (x86)/Emacs/spacemacs-develop/.spacemacs.d/dylayer/option/latex-customize.tex}
                \\input{D:/Program Files (x86)/Emacs/spacemacs-develop/.spacemacs.d/dylayer/option/preface-for-beamer-business.tex}"
 
 	             ("\\section{%s}" . "\\section*{%s}")
@@ -54,6 +56,7 @@
 (add-to-list 'org-latex-classes
              '("beamer-prefer"
                "\\documentclass[xcolor=dvipsnames,svgnames,x11names,10pt,bigger,presentation]{beamer}
+               \\input{D:/Program Files (x86)/Emacs/spacemacs-develop/.spacemacs.d/dylayer/option/latex-customize.tex}
                 \\usepackage[UTF8,space,hyperref]{ctex}
                 %\\usepackage[dvipsnames,svgnames,x11names]{xcolor}
 
@@ -67,6 +70,17 @@
                 \\usepackage{setspace}
                 %\\hypersetup{colorlinks=true,linkcolor=red}
                 \\usepackage[backend = biber, natbib=true, style = science, sorting = none]{biblatex}
+
+                % --- titile --- % ---------------- % ---------------- % ---------------- %
+                \\title[BeamerTitle]{Beamer template}
+                \\subtitle[option]{Unity of knowledge and action}
+                \\author{SHI WENHUA}
+                \\date{\\today}
+                \\institute[Techyauld]{
+                  Department of Customer Service\\\\
+                  Beijing techyauld Technology Development Co. Ltd.\\\\
+                  6th Zone 2nd Floor, Building 21st, Zpark, Haidian District, Beijing 100193, P.R.China\\\\[1ex]
+                  \\texttt{whshi@techyauld}}
 
                % --- theme --- % --- setbeamer --- % ---------------- % ---------------- %
 
@@ -93,26 +107,15 @@
 
                 % --- table of content ------------ % ---------------- % ---------------- %
                 \\AtBeginBibliography{\\footnotesize}
-                \\AtBeginSection{\\begin{frame}{Outline}
+                \\AtBeginSection{\\begin{frame}[shrink]{Outline}
                 \\tableofcontents[currentsection]
                 \\end{frame} }
 
-                %\\setbeamertemplate{section in toc}[square]
+                \\setbeamertemplate{section in toc}[square]
                 %\\setbeamercolor*{item projected}{fg=black, bg=blue!50!blue} % color of symbol before section
                 %\\setbeamercolor{section in toc}{fg=black}
                 %\\setbeamertemplate{subsection in toc}[circle]
                 %\\setbeamercolor{subsection in toc}{fg=blue}
-
-                % --- titile --- % ---------------- % ---------------- % ---------------- %
-                \\title[BeamerTitle]{Beamer template}
-                \\subtitle[option]{Unity of knowledge and action}
-                \\author{SHI WENHUA}
-                \\date{\\today}
-                \\institute[Techyauld]{
-                  Department of Customer Service\\\\
-                  Beijing techyauld Technology Development Co. Ltd.\\\\
-                  6th Zone 2nd Floor, Building 21st, Zpark, Haidian District, Beijing 100193, P.R.China\\\\[1ex]
-                  \\texttt{whshi@techyauld}}
 
                 % --- footnote --- % ---------------- % ---------------- % ---------------- %
                 \\usepackage[absolute,overlay]{textpos}

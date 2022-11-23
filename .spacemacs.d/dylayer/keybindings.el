@@ -62,8 +62,7 @@
 (spacemacs/set-leader-keys
   "ard" 'elfeed-dashboard
   "amb" 'bongo
-  "ame" 'emms
-  "amp" 'emms-play-directory
+  "amd" 'emms-play-directory
   "ah" 'easy-hugo
   "av" 'org-capture
 
@@ -71,6 +70,36 @@
   "oi" 'imenu-list
   "or" 'dy/remove-dos-eol
   "oy" 'youdao-dictionary-search-at-point+
+
+  "oBb" 'bongo
+  "oBg" 'bongo-start
+  "oBs" 'bongo-stop
+  "oBp" 'bongo-previous
+  "oBn" 'bongo-next
+  "oB>" 'bongo-seek-forward
+  "oB<" 'bongo-seek-backward
+  "oBr" 'bongo-play-random
+  "oBP" 'bongo-pause/resume ; bongo mode default <SPC>
+
+  "oEe" 'emms
+  "oEg" 'emms-start
+  "oEs" 'emms-stop
+  "oEd" 'emms-play-directory
+  "oEP" 'emms-pause
+  "oEp" 'emms-previous
+  "oEn" 'emms-next
+  "oEf" 'emms-show
+  ;; emms volume seek
+  "oE+" 'emms-volume-raise
+  "oE-" 'emms-volume-lower
+  "oE>" 'emms-seek-forward
+  "oE<" 'emms-seek-backward
+  ;; emms sort
+  "oESL" 'emms-playlist-sort-by-list
+  "oESN" 'emms-playlist-sort-by-name
+  "oESY" 'emms-playlist-sort-by-info-year
+  "oESt" 'emms-playlist-sort-by-info-title
+  "oESe" 'emms-playlist-sort-by-file-extension
 
   "odd" 'dy/goto-Ddisk-dir
   "ode" 'dy/goto-Edisk-dir
