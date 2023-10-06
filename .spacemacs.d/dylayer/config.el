@@ -27,6 +27,10 @@
 			         ))
 	    )
 
+
+;; emoji
+;; (set-fontset-font t 'symbol (font-spec :family "EmojiOne Color") nil 'prepend)
+(set-fontset-font t 'symbol (font-spec :family "Segoe UI Emoji") nil 'prepend)
 
 ;;(setq mouse-yank-at-point t)
 (mouse-avoidance-mode 'animate)
@@ -41,6 +45,7 @@
 ;; all backups goto ~/.backups instead in the current directory
 (setq backup-directory-alist (quote (("." . "e:/TMP/TmpFiles"))))
 
+
 ;; Dired
 ;; -----------------------------------------------------------------------
 ;; dired, show file(.org) with yellow in buffer.
@@ -57,12 +62,13 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 (setq initial-major-mode 'lisp-interaction-mode  ;; spacemacs default text-mode
       initial-scratch-message
-      "\n;; Configuration by <gitee.com/daotoyi/spacemacs.d>.\n;; Enjoy!\n\n")
+      "\n;; Configuration by <github.com/daotoyi/spacemacs.d>.\n;; Enjoy!\n\n")
 
 ;; dired-mode always occupy a buffer
 (put 'dired-find-alternate-file 'disabled nil)
 (with-eval-after-load 'dired
   (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file))
+
 ;; -----------------------------------------------------------------------
 ;; org
 ;; -----------------------------------------------------------------------
@@ -146,6 +152,7 @@
         (holiday-lunar 12 11 "daoyi birthday" 0)
         ))
 
+
 ;; -----------------------------------------------------------------------
 ;; flyspell
 (setq ispell-dictionary nil)
@@ -164,3 +171,36 @@
          nil
          utf-8)))
 (setq ispell-hunspell-dictionary-alist ispell-local-dictionary-alist)
+
+
+;; atuo switch input method in evil iner and nromal mode
+(defun emacs-ime-disable ()
+  (w32-set-ime-open-status nil))
+
+(defun emacs-ime-enable ()
+  (w32-set-ime-open-status t))
+
+(add-hook 'evil-insert-state-entry-hook 'emacs-ime-enable)
+(add-hook 'evil-insert-state-exit-hook 'emacs-ime-disable)
+
+
+;; newsticker
+(setq newsticker-frontend 'newsticker-plainview)
+
+(add-hook 'newsticker-mode-hook 'imenu-add-menubar-index)
+(setq newsticker-retrieval-interval 0
+      newsticker-ticker-interval 0)
+(setq newsticker-url-list-defaults nil)    ;remove default list (i.e. emacswiki)
+(setq newsticker-automatically-mark-items-as-old nil)
+;; extern exec
+(setq newsticker-retrieval-method 'extern)
+(setq newsticker-wget-name "curl")
+(setq newsticker-wget-arguments '("--disable" "--silent" "--location" ))
+(setq newsticker-url-list
+      '(
+        ;; formatj: ("title" "URL" other options)
+        ("Planet Emacs Life" "https://planet.emacslife.com/atom.xml" nil nil nil)
+        ("Emcas Info"        "https://jherrlin.github.io/index.xml" nil nil nil)
+        ("Ruan Yifeng"       "http://www.ruanyifeng.com/blog/atom.xml" nil nil nil)
+        ))
+

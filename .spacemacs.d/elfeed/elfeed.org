@@ -1,41 +1,33 @@
 * Feed                                                               :elfeed:
 ** Weibo                                                            :weibo:
 *** Important                                                   :important:
-**** [[https://rssfeed.today/weibo/rss/6393953260][WB: 卢献星]]
-
+# http://dyinvest.cn/
 ** Economic                                                       :economic:
-*** [[https://rssfeed.today/weibo/rss/2868676035][WB: 财联社]]
-*** [[https://github.com/hellodword/wechat-feeds/raw/feeds/MzUxNjY3NDc1NQ==.xml][WX: 三石观察]] 
+# *** http://23.94.74.234:1200/aicaijing/latest
+*** [[http://dyinvest.cn:1200/aicaijing/information/8][财经：AI财经社-地产-深度]] 
+*** [[http://dyinvest.cn:1200/aicaijing/information/25][财经：AI财经社-地产-热点]] 
+*** [[http://dyinvest.cn:1200/bloomberg][财经：Bloomberg]]
+*** [[http://dyinvest.cn:1200/weexcn/news/1][财经：华尔街见闻]]
+*** [[http://dyinvest.cn:1200/jin10/1][财经：金十数据]]
 
 ** Tools                                                             :tool:
 # *** [[https://feed.iplaysoft.com/][异次元软件]]
 
 ** Cognition                                                    :cognition:
-*** [[https://github.com/hellodword/wechat-feeds/raw/feeds/MzI2NDA5NDUxMw==.xml][WX: AI财经社]]
-*** [[https://github.com/hellodword/wechat-feeds/raw/feeds/Mzg4NDI1MzU2MQ==.xml][WX: AP投资洞察]]
-*** [[https://github.com/hellodword/wechat-feeds/raw/feeds/MjM5NjM5MjQ4MQ==.xml][WX: 刘润]]
-*** [[https://api.feeddd.org/feeds/61f457eddca58a380c5046ee][WX: https://api.feeddd.org/feeds/61f457eddca58a380c5046ee]]
-
-
 ** Options                                                        :options:
-*** [[https://github.com/hellodword/wechat-feeds/raw/feeds/MzA4MTMyNjIyNw==.xml][WX: 期权世界]] 
-*** [[https://api.feeddd.org/feeds/61b8c078dca58a380c2df6de][WX: 三思期权]]
-*** [[https://api.feeddd.org/feeds/615e555c1269c358aa165e67][WX: 力的期权工作室]]
-*** [[https://api.feeddd.org/feeds/616054d69b888e41f5cb17be/rss][WX: 上交所期权之家]] 
+*** [[http://dyinvest.cn:1200/newrank/wechat/optionworld][WX:期权世界]] 
+*** [[http://dyinvest.cn:1200/newrank/wechat/sansioption][WX:三思期权]]
+*** [[http://dyinvest.cn:1200/newrank/wechat/optionstudio_yuli][WX:力的期权工作室]]
 
 ** Quant                                                            :quant:
-*** [[https://github.com/hellodword/wechat-feeds/raw/feeds/MzA5MzU0MzgzMQ==.xml][WX: 期权期指量化]]
 
 ** USA/HK
-*** [[https://github.com/hellodword/wechat-feeds/raw/feeds/Mzg3NDQ2MzUzMw==.xml][WX: 美港电讯]]
-*** [[https://mail.google.com/mail/u/0/feed/atom][Gmail]]
-
 ** Blogs                                                             :blog:
-*** [[https://feeds.feedburner.com/ruanyifeng][ruanyf]]
+*** [[http://www.ruanyifeng.com/blog/atom.xml][Ruan Yifeng]]
 
 ** Emacs                                                            :emacs:
 *** [[https://jherrlin.github.io/index.xml][jherrlin]]
-*** [[https://www.masteringemacs.org/feed][MasteringEmacs]]
+*** http://23.94.74.234:1200/twitter/user/DIYgod
 
 ** Polotics                                                      :politics:
 # *** [[http://feedmaker.kindle4rss.com/feeds/china-politics.economist.com.xml][ChinaPolitics]]

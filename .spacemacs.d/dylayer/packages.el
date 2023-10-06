@@ -94,10 +94,12 @@ Each entry is either:
     org-download
     org-attach-screenshot
     elfeed-dashboard
+    newsticker
     ivy     ;; ivy / swiper multiple-cursor / sounsel
     ;; multiple-cursors
     evil
-    youdao-dictionary
+    ;; youdao-dictionary
+    fanyi
     disable-mouse
     super-save
     ;; python
@@ -109,6 +111,8 @@ Each entry is either:
     htmlize
     ;; grip-mode
     ;; rime
+    emojify
+    ;; (popweb :location built-in) ;; performace better on linux
     ))
 
 ;; ---------------------------------------------------------------------
@@ -130,9 +134,28 @@ Each entry is either:
     :defer t
     :init
     (setq url-automatic-caching t)
+    ;; (setq app_id  "00034f28dc3b90c2")
+    ;; (setq app_key "gsMj3KBIjisTz8J8TdPmB23EDsOje6W8")
     ;; (spacemacs/set-leader-keys "oy" 'youdao-dictionary-search-at-point+)
     ;; (global-set-key (kbd "C-q") 'youdao-dictionary-search-at-point+)
     ))
+
+(defun dylayer/init-fanyi ()
+  (use-package fanyi
+    :ensure t
+    ;; :defer t
+    :init
+    ;; (setq fanyi-auto-select nil)
+    (add-to-list 'exec-path "d:/Program Files/MPlayer for Windows/")
+    (setq fanyi-sound-player "mplayer")
+    (setq fanyi-sound-player-support-https t)
+    :custom
+    (fanyi-providers '(fanyi-haici-provider
+                       fanyi-youdao-thesaurus-provider
+                       fanyi-etymon-provider
+                       fanyi-longman-provider
+                       ;; fanyi-libre-provider
+                       ))))
 
 ;; init occur mode (from built-in)
 ;; ---------------------------------------------------------------------
@@ -199,6 +222,7 @@ Each entry is either:
 (defun dylayer/init-org-pomodoro()
   (use-package org-pomodoro
     :config
+    (add-to-list 'exec-path "d:/Program Files/MPlayer for Windows/")
     (setq org-pomodoro-audio-player "mplayer")
     (setq org-pomodoro-finished-sound-args "-volume 0.7")
     (setq org-pomodoro-long-break-sound-args "-volume 0.7")
@@ -299,10 +323,24 @@ Each entry is either:
     :ensure t
     :config
     (setq elfeed-dashboard-file "~/.spacemacs.d/elfeed/elfeed-dashboard.org")
+    (setq flycheck-global-modes '(not . (elfeed-search-mode)))
     ;; update feed counts on elfeed-quit
     (advice-add 'elfeed-search-quit-window :after #'elfeed-dashboard-update-links)
   ))
 
+(defun dylayer/init-newsticker()
+  (use-package newsticker 
+    :ensure t
+    :config
+    (require 'newsticker)
+    ;; (setq newsticker-frontend 'newsticker-plainview) ;; default newsticker-treeview
+    ;; not auto-fresh on backend
+    (setq newsticker-retrieval-interval 0
+          newsticker-ticker-interval 0)
+    ;; remove default list (i.e. emacswiki)
+    ;; (setq newsticker-url-list-defaults nil)
+    (setq newsticker-automatically-mark-items-as-old nil)
+    ))
 ;; init-xxx : xxx must be exit package/
 ;; ---------------------------------------------------------------------
 (defun dylayer/init-ivy()
@@ -527,3 +565,33 @@ Each entry is either:
     (default-input-method "rime")
     (rime-librime-root "D:/Scoop/apps/librime/current")
     ))
+
+(defun dylayer/init-emojify()
+  (use-package emojify
+    :config
+    (when (member "Segoe UI Emoji" (font-family-list))
+      (set-fontset-font
+       t 'symbol (font-spec :family "Segoe UI Emoji") nil 'prepend))
+    (setq emojify-display-style 'unicode)
+    (setq emojify-emoji-styles '(unicode))
+    (bind-key* (kbd "C-c e") #'emojify-insert-emoji) ; override binding in any mode
+    ))
+
+
+(defun dylayer/init-popweb()
+  "Performace better on linux platform. org-roam, latex show, translate"
+  (use-package org-roam
+    :ensure t
+    :init)
+  ;; (setenv "HOME" "D:/Program Files (x86)/Emacs/spacemacs-develop/")
+  (add-to-list 'load-path "~/.spacemacs.d/dylayer/popweb/")
+  (add-to-list 'load-path "~/.spacemacs.d/dylayer/popweb/extension/org-roam/")
+  (add-to-list 'load-path "~/.spacemacs.d/dylayer/popweb/extension/latex/")
+  (add-to-list 'load-path "~/.spacemacs.d/dylayer/popweb/extension/dict/")
+  (require 'popweb-org-roam-link)
+  (require 'popweb-latex)
+  (add-hook 'latex-mode-hook #'popweb-latex-mode)
+  (require 'popweb-dict) 
+  ;; (require 'popweb-dict-bing) ; Translation using Bing
+  ;; (require 'popweb-dict-youdao) ; Translation using Youdao
+  )

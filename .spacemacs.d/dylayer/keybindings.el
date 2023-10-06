@@ -1,4 +1,4 @@
-;;; keybindings.el for dylayer
+;; keybindings.el for dylayer
 ;; --------------------------------------------------------------------------------------------
 ;; keybingings global-set-key
 ;; adjust text-scale
@@ -61,6 +61,8 @@
 ;; spacemacs/set-leader-keys:
 (spacemacs/set-leader-keys
   "ard" 'elfeed-dashboard
+  "arn" 'newsticker-treeview
+  "arq" 'newsticker-treeview-quit
   "amb" 'bongo
   "amd" 'emms-play-directory
   "ah" 'easy-hugo
@@ -68,18 +70,20 @@
 
   "oc" 'calendar
   "oi" 'imenu-list
-  "or" 'dy/remove-dos-eol
-  "oy" 'youdao-dictionary-search-at-point+
+  ;; "oy" 'youdao-dictionary-search-at-point+
+  "oy" 'fanyi-dwim2
 
-  "oBb" 'bongo
-  "oBg" 'bongo-start
-  "oBs" 'bongo-stop
-  "oBp" 'bongo-previous
-  "oBn" 'bongo-next
-  "oB>" 'bongo-seek-forward
-  "oB<" 'bongo-seek-backward
-  "oBr" 'bongo-play-random
-  "oBP" 'bongo-pause/resume ; bongo mode default <SPC>
+  "obb" 'bongo
+  "obg" 'bongo-start
+  "obs" 'bongo-stop
+  "obp" 'bongo-previous
+  "obn" 'bongo-next
+  "obf" 'nbongo-show
+  "ob>" 'bongo-seek-forward
+  "ob<" 'bongo-seek-backward
+  "obr" 'bongo-play-random
+  "obR" 'bongo-repeating-playback-mode
+  "obP" 'bongo-pause/resume ; bongo mode default <SPC>
 
   "oEe" 'emms
   "oEg" 'emms-start
@@ -101,6 +105,8 @@
   "oESt" 'emms-playlist-sort-by-info-title
   "oESe" 'emms-playlist-sort-by-file-extension
 
+  "ofr" 'rename-file
+
   "odd" 'dy/goto-Ddisk-dir
   "ode" 'dy/goto-Edisk-dir
   "odb" 'dy/goto-blog-dir
@@ -119,15 +125,21 @@
   "oho" 'helm-occur
 
   "omb" 'org-beamer-mode
+  "omg" 'ggtags-mode
   "omi" 'iimage-mode
   "omj" 'javascript-mode
   "oml" 'lisp-interaction-mode
   "omm" 'markdown-mode
   "omc" 'occur-mode
   "omo" 'org-mode
+  "omp" 'pangu-spacing-mode
   "oms" 'shell-script-mode
   "omS" 'super-save-mode
   "omt" 'conf-toml-mode
+
+  ;; set in dylayer/packages.el
+  ;; "omh" 'markdown-to-html
+  ;; "oml" 'markdown-live-preview-mode
 
   "osg" 'counsel-git-grep
   "osr" 'dy/recursive-grep
@@ -144,9 +156,18 @@
   ;; "oog" 'get-buffers-matching-mode
   ;; "oos" 'multi-occur-in-this-mode
 
-  ;; set in dylayer/packages.el
-  ;; "omh" 'markdown-to-html
-  ;; "oml" 'markdown-live-preview-mode
+  "ord" 'elfeed-dashboard
+  "ore" 'elfeed
+  "orn" 'newsticker-treeview
+  "orq" 'newsticker-treeview-quit
+
+  "oty" 'fanyi-dwim2
+  "ott" 'fanyi-dwim
+  "oth" 'fanyi-from-history
+  "otc" 'fanyi-copy-query-word
+  "otu" 'dy/remove-dos-eol
+  ; "ou" 'dy/remove-dos-eol
+
   )
 
 ;; --------------------------------------------------------------------------------------------
