@@ -1,0 +1,85 @@
+name: CI - Deploy GitHub Pages
+
+on: 
+  push:
+    branches:
+      - main
+
+jobs: 
+  build:
+    runs-on: ubuntu-latest 
+
+  # jobDeploy: # job1      
+
+    # strategy:
+    #   matrix:
+    #     node-version: [10.x]
+
+    steps: 
+      - name: Checkout 
+        uses: actions/checkout@v2 # 使用的动作。作用：检出仓库，获取源码。
+        # 格式：userName/repoName。 官方actions库：https://github.com/actions
+        with:
+          persist-credentials: false
+
+          # - name: Use Node.js ${{ matrix.node-version }} # 步骤2
+          #   uses: actions/setup-node@v2 # 作用：安装nodejs
+          #   with:
+          #     node-version: ${{ matrix.node-version }} # 版本
+
+      - name: Generate static file
+        # run: npm install --no-fund && npm audit fix && npm run build
+        run: npm install && npm run build
+      
+      - name: Deploy on Github/site
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          REPOSITORY_NAME: daotoyi/site
+          BRANCH: gh-pages 
+          FOLDER: docs/.vuepress/dist 
+
+      - name: Deploy on Github/daotoyi
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          REPOSITORY_NAME: daotoyi/daotoyi.github.io
+          BRANCH: main
+          FOLDER: docs/.vuepress/dist
+
+      - name: Push Baidu Links
+        run: npm run baiduPush #（注意，运行目录是仓库根目录）
+
+  # jobPushBaidu:
+  #   needs: jobDeploy
+
+      # - name: Sync to Gitee
+      #   uses: wearerequired/git-mirror-action@master
+      #   env:
+      #     SSH_PRIVATE_KEY: ${{ secrets.GITEE_RSA_PRIVATE_KEY }}
+      #   with:
+      #     source-repo: git@github.com:daotoyi/daotoyi.github.io.git
+      #     destination-repo: git@gitee.com:daotoyi/daotoyi.git
+
+      # - name: Deploy Gitee Pages
+      #   uses: yanglbme/gitee-pages-action@main
+      #   with:
+
+      #     gitee-username: daotoyi
+
+      #     gitee-password: ${{ secrets.GITEE_PASSWORD }}
+      #     gitee-repo: daotoyi/daotoyi
+      #     branch: main
+
+      # Deploy on server
+      - name: Rsync deployments to VPS
+        uses: burnett01/rsync-deployments@5.2
+        with:
+        # rsync parameter:: switches: -avzh --delete --exclude="" --include="" --filter=""
+          switches: -avzh
+          path: docs/.vuepress/dist
+          remote_path: /home/daoyi/dyDocker/html/daotoyi #/root/dyDocker/html/daotoyi  
+          remote_host: daotoyi.tk # [66.152.179.47] # if CDN on cloudflare, not access.
+          remote_port: 22
+          remote_user: daoyi
+          remote_key: ${{ secrets.MY_VPS_RSA_PRIVATE_KEY }}
