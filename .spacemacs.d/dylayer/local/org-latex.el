@@ -77,7 +77,7 @@
                 %\\lhead{left header}
                 %\\chead{Techyauld}
                 %\\rhead{right header}
-                \\lfoot{http://www.techyauld.com}
+                %\\lfoot{http://www.techyauld.com}
                 %\\cfoot{第\\thepage页}
                 %\\rfoot{right footer，modify \\today}
 

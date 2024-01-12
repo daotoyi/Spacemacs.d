@@ -10,7 +10,7 @@ git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 ** dylayer
 
 #+BEGIN_SRC shell
-git clone https://gitee.com/daotoyi/spacemacs.d ~/
+git clone https://github.com/daotoyi/spacemacs.d ~/
 #+END_SRC
 
 * note

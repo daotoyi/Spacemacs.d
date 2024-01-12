@@ -60,9 +60,9 @@
 (setq dired-quick-sort-suppress-setup-warning t)
 
 (defalias 'yes-or-no-p 'y-or-n-p)
-(setq initial-major-mode 'lisp-interaction-mode  ;; spacemacs default text-mode
+(setq initial-major-mode 'org   ;; lisp-interaction-mode  ;; spacemacs default text-mode
       initial-scratch-message
-      "\n;; Configuration by <github.com/daotoyi/spacemacs.d>.\n;; Enjoy!\n\n")
+      "\n# Configuration by <github.com/daotoyi/spacemacs.d>.\n# Enjoy!\n\n")
 
 ;; dired-mode always occupy a buffer
 (put 'dired-find-alternate-file 'disabled nil)
