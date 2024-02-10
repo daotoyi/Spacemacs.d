@@ -30,7 +30,7 @@
 
 ;; emoji
 ;; (set-fontset-font t 'symbol (font-spec :family "EmojiOne Color") nil 'prepend)
-(set-fontset-font t 'symbol (font-spec :family "Segoe UI Emoji") nil 'prepend)
+;; (set-fontset-font t 'symbol (font-spec :family "Segoe UI Emoji") nil 'prepend)
 
 ;;(setq mouse-yank-at-point t)
 (mouse-avoidance-mode 'animate)

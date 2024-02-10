@@ -222,7 +222,7 @@ Each entry is either:
 (defun dylayer/init-org-pomodoro()
   (use-package org-pomodoro
     :config
-    (add-to-list 'exec-path "d:/Program Files/MPlayer for Windows/")
+    ;; (add-to-list 'exec-path "d:/Program Files/MPlayer for Windows/")
     (setq org-pomodoro-audio-player "mplayer")
     (setq org-pomodoro-finished-sound-args "-volume 0.7")
     (setq org-pomodoro-long-break-sound-args "-volume 0.7")
@@ -253,7 +253,8 @@ Each entry is either:
   (use-package easy-hugo
     :init
     (setq easy-hugo-default-ext ".org")
-    (setq easy-hugo-basedir "E:/Refine/GithubPages/Blog/"
+    ;; (setq easy-hugo-basedir "E:/Refine/GithubPages/Blog/"
+    (setq easy-hugo-basedir "~/refine/"
     ;; (setq easy-hugo-basedir "E:/Refine/daotoyi.github.io/FIRE/"
 	        easy-hugo-url "https://daotoyi.github.io")
     (unless (file-exists-p easy-hugo-basedir)
@@ -261,8 +262,8 @@ Each entry is either:
 
     ;; (setq easy-hugo-bloglist
     ;;       '(;; blog for github pages
-	  ;;         ((easy-hugo-basedir . "E:/Refine/daotoyi.github.io/FIRE/")
-	  ;;          (easy-hugo-url . "https://fire.daotoyi.cn"))
+    ;;         ((easy-hugo-basedir . "E:/Refine/daotoyi.github.io/FIRE/")
+    ;;          (easy-hugo-url . "https://fire.daotoyi.cn"))
     ;;         ((easy-hugo-basedir . "E:/Refine/daotoyi.github.io/Blog/")
     ;;          (easy-hugo-url . "https://daotoyi.github.io")
     ;;          )))
@@ -427,7 +428,7 @@ Each entry is either:
   (use-package yasnippet
     :config
     ;; (add-to-list 'yas-snippet-dirs "～/.spacemacs.d/snippets")
-    (add-to-list 'yas-snippet-dirs (concat EamcsConfDir ".spacemacs.d/snippets/"))
+    ;; (add-to-list 'yas-snippet-dirs (concat EamcsConfDir ".spacemacs.d/snippets/"))
     (yas-reload-all)
     (add-hook 'prog-mode-hook #'yas-minor-mode)
     (yas-global-mode 1)

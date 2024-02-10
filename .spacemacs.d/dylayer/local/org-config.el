@@ -13,7 +13,11 @@
         org-directory "/mnt/e/Refine/Org/"
         newencryption "touch "
         ))
-
+(when (eq system-type 'darwin)
+  (setq refine-directory "~/Refine/"
+        org-directory "~/refine/org/"
+        newencryption "touch "
+        ))
 
 (setq org-startup-indented t
       org-src-fontify-natively t)		;; highlight

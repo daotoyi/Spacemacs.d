@@ -7,7 +7,7 @@
   :defer nil
   :bind ("<f12>" . org-agenda)
   :config
-  (require 'org-install)    ;; autoload function, not when start org.
+  ;; (require 'org-install)    ;; autoload function, not when start org.
   (require 'org-config)
   (require 'org-agenda-config)
   (require 'org-agenda-func)
