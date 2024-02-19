@@ -96,7 +96,7 @@
    (car (occur-read-primary-args))))
 
 ;; --------------------------------------------------------------------------------------------
-;; set in dy/packages#evil 
+;; set in dy/packages#evil
 (defun dy/maybe-exit-notwork ()
   (with-eval-after-load 'evil
     (evil-define-command maybe-exit ()
@@ -127,17 +127,12 @@
   (interactive)
   (dired my-Edisk-path))
 
-(defconst my-notes-path "e:/Nutstore/ObsidianDB/" "My Notes(obsidian) dir")
-(defun dy/goto-notes-dir ()
-  (interactive)
-  (dired my-notes-path))
-
-(defconst my-refine-path "e:/refine/" "My refine dir")
+(defconst my-refine-path refine-directory "My refine dir")
 (defun dy/goto-refine-dir ()
   (interactive)
   (dired my-refine-path))
 
-(defconst my-blog-path "e:/Refine/GithubPages/OrgBlog/" "My Blog dir")
+(defconst my-blog-path (concat org-githubpages-directory "orgblog") "My Blog dir")
 (defun dy/goto-blog-dir ()
   (interactive)
   (dired my-blog-path))
@@ -183,11 +178,13 @@ See `org-capture-templates' for more information."
                    "%?\n")          ;Place the cursor here finally
                  "\n")))
 
-  (setq org-blog-posts (expand-file-name "E:/Refine/GithubPages/OrgBlog/post-box.org" refine-directory))
+  ;; (setq org-blog-posts (expand-file-name "e:/refine/githubpages/orgblog/post-box.org" refine-directory))
+  (setq org-blog-posts (expand-file-name (concat org-githubpages-directory "orgblog/post-box.org") refine-directory))
   (add-to-list 'org-capture-templates
                '("h"                ;`org-capture' binding + h
-                 "Hugo post"
-                 entry (file+olp "E:/Refine/GithubPages/OrgBlog/blog-capture.org" "BlogInbox")
+                 "hugo post"
+                 ;; entry (file+olp "e:/refine/githubpages/orgblog/blog-capture.org" "bloginbox")
+                 entry (file+olp (concat org-githubpages-directory "orgblog/blog-capture.org") "BlogInbox")
                  (function org-hugo-new-subtree-post-capture-template)
                  ;; It is assumed that below file is present in `org-directory'
                  ;; and that it has a "Blog Ideas" heading. It can even be a
@@ -201,7 +198,8 @@ See `org-capture-templates' for more information."
 
 ;; --------------------------------------------------------------------------------------------
 (defvar blog-timestamp-format "%Y-%m-%dT%H:%M:%S+08:00"
-  "Format of function %Y-%m-%d %H:%M will produce something of the form YYYY-MM-DD HH:MM, Do Ch f on `format-time-string' for more info")
+  "Format of function %Y-%m-%d %H:%M will produce something of the form YYYY-MM-DD HH:MM,
+Do Ch f on `format-time-string' for more info")
 (defun dy/insert-blog-time-timestamp ()
   (interactive)  ; permit invocation in minibuffer
   (insert (format-time-string blog-timestamp-format (current-time))))

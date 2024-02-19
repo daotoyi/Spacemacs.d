@@ -1,15 +1,8 @@
-
 ;;; config.el for dylayer
 
 
 ;; basic setting.
 ;; --------------------------------------------------------------------------------------------
-
-;; default directory.
-;; (when (eq system-type 'windows-nt)
-;;   (setq default-directory "e:/Refine/"))
-;; (when (eq system-type 'gnu/linux)
-;;   (setq default-directory "/mnt/e/Refine/"))
 
 ;; improve startup speed.
 (setq tramp-ssh-controlmaster-options
@@ -41,9 +34,6 @@
 ;; save-some-buffers(C-x s) without querying user
 (setq save-silently-p t)
 (setq auto-save-silent t)
-
-;; all backups goto ~/.backups instead in the current directory
-(setq backup-directory-alist (quote (("." . "e:/TMP/TmpFiles"))))
 
 
 ;; Dired
@@ -156,7 +146,10 @@
 ;; -----------------------------------------------------------------------
 ;; flyspell
 (setq ispell-dictionary nil)
-(setq ispell-program-name "D:/Soft/hunspell/bin/hunspell.exe")
+(cond ((eq system-type 'windows-nt) (setq ispell-program-name "D:/Soft/hunspEll/bin/hunspell.exe"))
+      ((eq system-type 'gnu/linux)  (setq ispell-program-name "/usr/bin/hunspell"))
+      ((eq system-type 'darwin)     (setq ispell-program-name "/opt/homebrew/bin/hunspell"))
+      )
 ;; "en_US" is key to lookup in `ispell-local-dictionary-alist'.
 ;; Please note it will be passed as default value to hunspell CLI `-d` option
 ;; if you don't manually setup `-d` in `ispell-local-dictionary-alist`
@@ -176,12 +169,13 @@
 ;; atuo switch input method in evil iner and nromal mode
 (defun emacs-ime-disable ()
   (w32-set-ime-open-status nil))
-
 (defun emacs-ime-enable ()
   (w32-set-ime-open-status t))
 
-(add-hook 'evil-insert-state-entry-hook 'emacs-ime-enable)
-(add-hook 'evil-insert-state-exit-hook 'emacs-ime-disable)
+(cond ((eq system-type 'windows-nt)
+       (add-hook 'evil-insert-state-entry-hook 'emacs-ime-enable)
+       (add-hook 'evil-insert-state-exit-hook 'emacs-ime-disable)
+       ))
 
 
 ;; newsticker
@@ -203,4 +197,3 @@
         ("Emcas Info"        "https://jherrlin.github.io/index.xml" nil nil nil)
         ("Ruan Yifeng"       "http://www.ruanyifeng.com/blog/atom.xml" nil nil nil)
         ))
-

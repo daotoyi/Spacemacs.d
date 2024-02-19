@@ -3,21 +3,21 @@
 ;;; Code:
 
 
-(when (eq system-type 'windows-nt)
-  (setq refine-directory "E:/Refine/"
-        org-directory "E:/Refine/Org/"
-        newencryption "type nul>"
-        ))
-(when (eq system-type 'gnu/linux)
-  (setq refine-directory "/mnt/e/Refine/"
-        org-directory "/mnt/e/Refine/Org/"
-        newencryption "touch "
-        ))
-(when (eq system-type 'darwin)
-  (setq refine-directory "~/Refine/"
-        org-directory "~/refine/org/"
-        newencryption "touch "
-        ))
+;; (when (eq system-type 'windows-nt)
+;;   (setq refine-directory "E:/Refine/"
+;;         org-directory "E:/Refine/Org/"
+;;         newencryption "type nul>"
+;;         ))
+;; (when (eq system-type 'gnu/linux)
+;;   (setq refine-directory "/mnt/e/Refine/"
+;;         org-directory "/mnt/e/Refine/Org/"
+;;         newencryption "touch "
+;;         ))
+;; (when (eq system-type 'darwin)
+;;   (setq refine-directory "~/Refine/"
+;;         org-directory "~/refine/org/"
+;;         newencryption "touch "
+;;         ))
 
 (setq org-startup-indented t
       org-src-fontify-natively t)		;; highlight

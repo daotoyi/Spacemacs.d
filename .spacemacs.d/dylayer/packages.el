@@ -70,11 +70,7 @@ Each entry is either:
         recipe.  See: https://github.com/milkypostman/melpa#recipe-format")
 
 ;; ==================================================================================================
-;; (add-to-list 'load-path "D:/Program Files (x86)/Emacs/spacemacs-develop/.spacemacs.d/dylayer/local/")
-(when (eq system-type 'windows-nt)
-  (setenv "HOME" "D:/Program Files (x86)/Emacs/spacemacs-develop/"))
 (add-to-list 'load-path "~/.spacemacs.d/dylayer/local/")
-;; (load-file "~/spacemacs.d/dylayer/packages.el")
 
 ;; add package
 (defconst dylayer-packages
@@ -253,9 +249,7 @@ Each entry is either:
   (use-package easy-hugo
     :init
     (setq easy-hugo-default-ext ".org")
-    ;; (setq easy-hugo-basedir "E:/Refine/GithubPages/Blog/"
     (setq easy-hugo-basedir "~/refine/"
-    ;; (setq easy-hugo-basedir "E:/Refine/daotoyi.github.io/FIRE/"
 	        easy-hugo-url "https://daotoyi.github.io")
     (unless (file-exists-p easy-hugo-basedir)
       (make-directory easy-hugo-basedir))
@@ -521,9 +515,9 @@ Each entry is either:
 (defun dylayer/init-company-jedi()
   (use-package company-jedi
     :config
-    (defun my/python-mode-hook ()
+    (defun dy/python-mode-hook ()
       (add-to-list 'company-backends 'company-jedi))
-    (add-hook 'python-mode-hook 'my/python-mode-hook)
+    (add-hook 'python-mode-hook 'dy/python-mode-hook)
     (add-hook 'after-init-hook 'global-company-mode)
     (setq company-transformers '(company-sort-by-occurrence)
           company-tooltip-align-annotations t
@@ -564,8 +558,7 @@ Each entry is either:
   (use-package rime
     :custom
     (default-input-method "rime")
-    (rime-librime-root "D:/Scoop/apps/librime/current")
-    ))
+    (cond ((eq system-type 'windows-nt) (rime-librime-root "D:/Scoop/apps/librime/current")))))
 
 (defun dylayer/init-emojify()
   (use-package emojify

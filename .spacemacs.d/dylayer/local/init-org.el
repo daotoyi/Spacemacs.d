@@ -12,7 +12,7 @@
   (require 'org-agenda-config)
   (require 'org-agenda-func)
   (require 'beamer-alert)
-  (require 'ox-latex)       ;; should be require before org-latex, define usepackage. 
+  (require 'ox-latex)       ;; should be require before org-latex, define usepackage.
   (require 'org-latex)
   (require 'org-beamer)     ;; should be required after org-latex
   (require 'ox-latex-chinese))

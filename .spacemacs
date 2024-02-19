@@ -231,7 +231,7 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-new-empty-buffer-major-mode 'text-mode
 
    ;; Default major mode of the scratch buffer (default `text-mode')
-   dotspacemacs-scratch-mode 'text-mode
+   dotspacemacs-scratch-mode 'org-mode
 
    ;; If non-nil, *scratch* buffer will be persistent. Things you write down in
    ;; *scratch* buffer will be saved and restored automatically.
@@ -545,6 +545,7 @@ It should only modify the values of Spacemacs settings."
    ;; If non-nil then byte-compile some of Spacemacs files.
    dotspacemacs-byte-compile nil))
 
+
 (defun dotspacemacs/user-env ()
   "Environment variables setup.
 This function defines the environment variables for your Emacs session. By
@@ -558,12 +559,57 @@ See the header of this file for more information."
 This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
-If you are unsure, try setting them in `dotspacemacs/user-config' first.")
+If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (setq configuration-layer--elpa-archives
-      '(("melpa-cn" . "http://elpa.zilongshanren.com/melpa/")
-        ("org-cn"   . "http://elpa.zilongshanren.com/org/")
-        ("gnu-cn"   . "http://elpa.zilongshanren.com/gnu/")))
+        '(("melpa-cn" . "http://elpa.zilongshanren.com/melpa/")
+          ("org-cn"   . "http://elpa.zilongshanren.com/org/")
+          ("gnu-cn"   . "http://elpa.zilongshanren.com/gnu/")))
 
+  ;; default directory.
+  ;; (when (eq system-type 'windows-nt)
+  ;;   (setq default-directory "e:/Refine/"))
+  ;; (when (eq system-type 'darwin)
+  ;;   (setq default-directory "~/refine/" ))
+  ;; -----------------------------------------------------------------------
+  (if (eq system-type 'windows-nt)
+      (progn
+        (setq-default
+         default-directory "E:/Refine/")
+        ;; -----------------------------------------------------------------
+        (setq EamcsDir     "D:/Program Files (x86)/Emacs/"
+              EamcsVerDir  (concat EamcsDir "emacs-27.1-x86_64/"))	;; (emacs-27.1-x86_64/  emacs-28.2/)
+        (when (<= emacs-major-version 27)
+	        (setq EamcsConfDir (concat EamcsDir "myemacs/")))
+        (when (>= emacs-major-version 28)
+          (setq EamcsConfDir (concat EamcsDir "spacemacs-develop/")))
+        (setenv "ROOTHOME" "HOME"
+                "HOME" EamcsConfDir)
+        ;; ----------------------------------------------------------------
+        (setq ;; all backups goto ~/.backups instead in the current directory
+         backup-directory-alist (quote (("." . "E:/TMP/EmacsBackup")))
+         refine-directory "e:/refine/"
+         org-directory "e:/refine/org/"
+         org-agenda-directory (concat ROOTHOME "OneDrive/gtd/")
+         org-agenda-files (concat ROOTHOME "OneDrive/gtd/")
+         org-githubpages-directory "e:/refine/ghpage/"
+         music-directory "e:/Recreation/Music/"
+         newencryption "type nul>"
+         ))
+    ;; elif system-type
+    ;;; darwin and gnu/linux
+    (setq-default
+     default-directory "~/refine/")
+    (setq backup-directory-alist (quote (("." . "/tmp/emacsbackup")))
+          refine-directory "~/refine/"
+          org-directory "~/refine/org/"
+          ;; org-agenda-directory "~/refine/gtd/"
+          org-agenda-directory "~/Nutstore Files/gtd/"
+          org-agenda-files "~/Nutstore Files/gtd/"
+          org-githubpages-directory "~/refine/ghpage"
+          music-directory "~/Music/"
+          newencryption "touch "
+          )
+    ))
 
 (defun dotspacemacs/user-load ()
   "Library to load while dumping.
@@ -623,35 +669,35 @@ before packages are loaded."
   (evilified-state-evilify-map occur-mode-map
     :mode occur-mode)
 
-;; (evil-set-initial-state 'elfeed-dashboard-mode 'emacs)
-;; elfeed face.
-(defface important-elfeed-entry '((t :foreground "yellow"))
-  "Marks an important Elfeed entry.")
-(push '(important important-elfeed-entry) elfeed-search-face-alist)
+  ;; (evil-set-initial-state 'elfeed-dashboard-mode 'emacs)
+  ;; elfeed face.
+  (defface important-elfeed-entry '((t :foreground "yellow"))
+    "Marks an important Elfeed entry.")
+  (push '(important important-elfeed-entry) elfeed-search-face-alist)
 
-(defface tool-elfeed-entry '((t :foreground "DodgerBlue")) ;; blue: #1e90ff
-  "Marks tool entry")
-(push '(tool tool-elfeed-entry) elfeed-search-face-alist)
+  (defface tool-elfeed-entry '((t :foreground "DodgerBlue")) ;; blue: #1e90ff
+    "Marks tool entry")
+  (push '(tool tool-elfeed-entry) elfeed-search-face-alist)
 
-(defface cognition-elfeed-entry '((t :foreground "purple"))
-  "Marks cognition entry")
-(push '(cognition cognition-elfeed-entry) elfeed-search-face-alist)
+  (defface cognition-elfeed-entry '((t :foreground "purple"))
+    "Marks cognition entry")
+  (push '(cognition cognition-elfeed-entry) elfeed-search-face-alist)
 
-;; Automatically updating feed when opening elfeed
-(add-hook! 'elfeed-search-mode-hook #'elfeed-update)
-;; Run `elfeed-update' every 24 hours
-(run-at-time nil (* 24 60 60) #'elfeed-update)
+  ;; Automatically updating feed when opening elfeed
+  (add-hook! 'elfeed-search-mode-hook #'elfeed-update)
+  ;; Run `elfeed-update' every 24 hours
+  (run-at-time nil (* 24 60 60) #'elfeed-update)
 
-(add-hook 'elfeed-new-entry-hook
-          (elfeed-make-tagger :feed-url "medium\\.com"
-                              :before "3 months ago"
-                              :add 'medium))
-;; Entries older than 2 weeks are marked as read
-(add-hook 'elfeed-new-entry-hook
-          (elfeed-make-tagger :before "2 weeks ago"
-                              :remove 'unread))
+  (add-hook 'elfeed-new-entry-hook
+            (elfeed-make-tagger :feed-url "medium\\.com"
+                                :before "3 months ago"
+                                :add 'medium))
+  ;; Entries older than 2 weeks are marked as read
+  (add-hook 'elfeed-new-entry-hook
+            (elfeed-make-tagger :before "2 weeks ago"
+                                :remove 'unread))
+  )
 
-)
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
@@ -667,13 +713,9 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(elfeed-feeds nil)
  '(evil-want-Y-yank-to-eol nil)
- ;; -------------------------------------------------------------
- ;;'(org-agenda-files
- ;;  '("E:/Refine/GTD/task.org" "E:/Refine/GTD/note.org" "E:/Refine/GTD/project.org" "E:/Refine/GTD/MobileOrg/orgzly.org"))
- ;; -------------------------------------------------------------
  '(org-hugo-date-format "%Y-%m-%d %T")
  '(package-selected-packages
-   '(fanyi emojify flyspell-correct-helm flyspell-correct auto-dictionary elfeed-dashboard elfeed-org elfeed-goodies ace-jump-mode elfeed rime ox-publish yaml-mode web-mode web-beautify tagedit slim-mode scss-mode sass-mode pug-mode prettier-js impatient-mode simple-httpd helm-css-scss haml-mode grip-mode emmet-mode counsel-css toml-mode ron-mode racer rust-mode flycheck-rust cargo company-jedi jedi-core python-environment super-save emms volume bongo org-pomodoro alert log4e disable-mouse yapfify stickyfunc-enhance sphinx-doc pytest pyenv-mode pydoc py-isort poetry pippel pipenv pyvenv pip-requirements lsp-python-ms lsp-pyright live-py-mode importmagic epc ctable concurrent deferred helm-pydoc helm-gtags helm-cscope xcscope ggtags dap-mode lsp-treemacs bui lsp-mode lv cython-mode counsel-gtags company-anaconda blacken anaconda-mode pythonic yasnippet-snippets xterm-color unfill terminal-here shell-pop xr pangu-spacing org-rich-yank org-category-capture org-present gntp org-mime org-download org-contrib org-cliplink org mwim multi-term mmm-mode markdown-toc markdown-mode htmlize helm-org-rifle helm-company helm-c-yasnippet gnuplot gh-md fuzzy find-by-pinyin-dired evil-org goto-chg eshell-z eshell-prompt-extras esh-help company chinese-conv auto-yasnippet yasnippet ace-pinyin pinyinlib ac-ispell auto-complete zenburn-theme ws-butler writeroom-mode winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package undo-tree treemacs-projectile treemacs-persp treemacs-icons-dired treemacs-evil toc-org symon symbol-overlay string-inflection string-edit spaceline-all-the-icons solarized-theme restart-emacs request rainbow-delimiters quickrun popwin pcre2el password-generator paradox overseer org-superstar open-junk-file nameless multi-line monokai-theme macrostep lorem-ipsum link-hint inspector info+ indent-guide hybrid-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-org helm-mode-manager helm-make helm-ls-git helm-flx helm-descbinds helm-ag google-translate golden-ratio font-lock+ flycheck-package flycheck-elsa flx-ido fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-easymotion evil-collection evil-cleverparens evil-args evil-anzu eval-sexp-fu emr elisp-slime-nav editorconfig dumb-jump drag-stuff dotenv-mode dired-quick-sort diminish define-word column-enforce-mode clean-aindent-mode centered-cursor-mode auto-highlight-symbol auto-compile aggressive-indent ace-link ace-jump-helm-line))
+   '(org-roam fanyi emojify flyspell-correct-helm flyspell-correct auto-dictionary elfeed-dashboard elfeed-org elfeed-goodies ace-jump-mode elfeed rime ox-publish yaml-mode web-mode web-beautify tagedit slim-mode scss-mode sass-mode pug-mode prettier-js impatient-mode simple-httpd helm-css-scss haml-mode grip-mode emmet-mode counsel-css toml-mode ron-mode racer rust-mode flycheck-rust cargo company-jedi jedi-core python-environment super-save emms volume bongo org-pomodoro alert log4e disable-mouse yapfify stickyfunc-enhance sphinx-doc pytest pyenv-mode pydoc py-isort poetry pippel pipenv pyvenv pip-requirements lsp-python-ms lsp-pyright live-py-mode importmagic epc ctable concurrent deferred helm-pydoc helm-gtags helm-cscope xcscope ggtags dap-mode lsp-treemacs bui lsp-mode lv cython-mode counsel-gtags company-anaconda blacken anaconda-mode pythonic yasnippet-snippets xterm-color unfill terminal-here shell-pop xr pangu-spacing org-rich-yank org-category-capture org-present gntp org-mime org-download org-contrib org-cliplink org mwim multi-term mmm-mode markdown-toc markdown-mode htmlize helm-org-rifle helm-company helm-c-yasnippet gnuplot gh-md fuzzy find-by-pinyin-dired evil-org goto-chg eshell-z eshell-prompt-extras esh-help company chinese-conv auto-yasnippet yasnippet ace-pinyin pinyinlib ac-ispell auto-complete zenburn-theme ws-butler writeroom-mode winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package undo-tree treemacs-projectile treemacs-persp treemacs-icons-dired treemacs-evil toc-org symon symbol-overlay string-inflection string-edit spaceline-all-the-icons solarized-theme restart-emacs request rainbow-delimiters quickrun popwin pcre2el password-generator paradox overseer org-superstar open-junk-file nameless multi-line monokai-theme macrostep lorem-ipsum link-hint inspector info+ indent-guide hybrid-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-org helm-mode-manager helm-make helm-ls-git helm-flx helm-descbinds helm-ag google-translate golden-ratio font-lock+ flycheck-package flycheck-elsa flx-ido fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-easymotion evil-collection evil-cleverparens evil-args evil-anzu eval-sexp-fu emr elisp-slime-nav editorconfig dumb-jump drag-stuff dotenv-mode dired-quick-sort diminish define-word column-enforce-mode clean-aindent-mode centered-cursor-mode auto-highlight-symbol auto-compile aggressive-indent ace-link ace-jump-helm-line))
  '(volume-backend 'volume-aumix-backend))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

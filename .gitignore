@@ -1,12 +1,3 @@
-.cache/
-.elfeed/
-.emacs.d/
-.org-timestamps/
-mplayer/
-./public_html/
-.gitconfig
-.history
 .spacemacs.d/dylayer/popweb/
 .spacemacs.d/.spacemacs.env	
-.spacemacs.env
 

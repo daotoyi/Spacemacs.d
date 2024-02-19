@@ -2,15 +2,15 @@
 ;;; Commentary:
 ;;; Code:
 
-(defvar org-agenda-dir "" "gtd org files location")
+(defvar org-agenda-directory "" "gtd org files location")
 (setq org-agenda-compact-blocks t)    ;; Compact the block agenda view
 
-(when (eq system-type 'windows-nt)
-  (setq-default org-agenda-dir "E:/Refine/GTD/")
-  (setq org-agenda-files '("E:/Refine/GTD/")))
-(when (eq system-type 'gnu/linux)
-  (setq-default org-agenda-dir "/mnt/e/Refine/GTD/")
-  (setq org-agenda-files '("/mnt/e/Refine/GTD/")))
+;; (when (eq system-type 'windows-nt)
+;;   (setq-default org-agenda-directory "E:/Refine/GTD/")
+;;   (setq org-agenda-files '("E:/Refine/GTD/")))
+;; (when (eq system-type 'gnu/linux)
+;;   (setq-default org-agenda-directory "/mnt/e/Refine/GTD/")
+;;   (setq org-agenda-files '("/mnt/e/Refine/GTD/")))
 
 
 ;;; org-todo
@@ -35,7 +35,7 @@
 		                  (:startgroup . nil)
 		                  ("@Product" . ?P)
 		                  (:grouptags . nil)
-		                  ("P@tpe4k" . ?4) ("P@tpe5k" . ?5) ("P@tpe6k" . ?6) ("P@tre" . ?7) ("P@tsw" . ?8) ("P@other" . ?9)
+	                    ("P@tpe4k" . ?4) ("P@tpe5k" . ?5) ("P@tpe6k" . ?6) ("P@tre" . ?7) ("P@tsw" . ?8) ("P@other" . ?9)
 		                  (:endgroup . nil)
 
                       ("Work" . ?W)   ("Hobby" . ?H)   ("Refine" . ?R) ("Invest" . ?I) ("Output" . ?O)
@@ -49,13 +49,13 @@
 (setq org-tags-exclude-from-inheritance '("Project"))
 (setq org-tags-match-list-sublevels nil)
 ;;; org-agenda files && directory.
-(setq org-agenda-file-inbox (expand-file-name "MobileOrg/orgzly.org" org-agenda-dir))
-(setq org-agenda-file-task (expand-file-name "task.org" org-agenda-dir))
-(setq org-agenda-file-note (expand-file-name "note.org" org-agenda-dir))
-(setq org-agenda-file-project (expand-file-name "project.org" org-agenda-dir))
-(setq org-agenda-file-calendar (expand-file-name "calendar.org" org-agenda-dir))
-;; (setq org-agenda-file-finished (expand-file-name "finished.org" org-agenda-dir))
-;; (setq org-agenda-file-canceled (expand-file-name "canceled.org" org-agenda-dir))
+(setq org-agenda-file-inbox (expand-file-name "orgmobile/orgzly.org" org-agenda-directory))
+(setq org-agenda-file-task (expand-file-name "task.org" org-agenda-directory))
+(setq org-agenda-file-note (expand-file-name "note.org" org-agenda-directory))
+(setq org-agenda-file-project (expand-file-name "project.org" org-agenda-directory))
+(setq org-agenda-file-calendar (expand-file-name "calendar.org" org-agenda-directory))
+;; (setq org-agenda-file-finished (expand-file-name "finished.org" org-agenda-directory))
+;; (setq org-agenda-file-canceled (expand-file-name "canceled.org" org-agenda-directory))
 
 (setq org-highest-priority ?A)
 (setq org-lowest-priority  ?E)
@@ -71,7 +71,7 @@
 
 
 ;;; org-capture
-(setq org-default-notes-file (concat refine-directory "GTD/inbox.org"))
+(setq org-default-notes-file (concat org-agenda-directory "inbox.org"))
 (setq org-capture-templates
       '(
         ("1" "Task@quadrant1"  entry (file+headline org-agenda-file-task "Task&quadrant1")  "* TODO [#A] %? :1Quadrant:\n SCHEDULED: %T\n %i\n" :empty-lines 1)
@@ -112,15 +112,15 @@
 
 ;;; org-refile
 (define-key global-map "\C-cr" 'org-refile)
-(setq org-agenda-files (list (concat refine-directory "GTD/task.org")
-                             (concat refine-directory "GTD/note.org")
-                             (concat refine-directory "GTD/project.org")
-                             ;; (concat refine-directory "GTD/orgzly.org")
-                             (concat refine-directory "GTD/MobileOrg/orgzly.org") ;; mobileorg push, sync with jianguoyun. 
+(setq org-agenda-files (list (concat org-agenda-directory "task.org")
+                             (concat org-agenda-directory "note.org")
+                             (concat org-agenda-directory "project.org")
+                             ;; (concat org-agenda-directory "orgzly.org")
+                             (concat org-agenda-directory "orgmobile/orgzly.org") ;; gmobile push, sync with jianguoyun. 
 			     ))
 
-(setq org-agenda-diary-file (concat refine-directory "GTD/diary.org")
-      diary-file (concat refine-directory "GTD/diary.org"))
+(setq org-agenda-diary-file (concat org-agenda-directory "diary.org")
+      diary-file (concat org-agenda-directory "diary.org"))
 
 ;; (setq org-refile-targets  '((org-agenda-file-finished :maxlevel . 2)
 ;;                             ;; (org-agenda-file-canceled :maxlevel . 9)
@@ -158,23 +158,23 @@
 ;;; Command: C-c C-x C-s
 ;;location for archive
 (setq org-archive-location
-      (concat refine-directory "GTD/_archive/"
+      (concat org-agenda-directory "_archive/"
               (format-time-string "%Y%m") "_archive.org::datetree/* Archive from %s"))
 ;;information added to property when a subtree is moved
 (setq org-archive-save-context-info '(time file ltags itags todo category olpath))
 
 
 ;;; org-mobile
-(setq org-mobile-directory  (concat refine-directory "GTD/MobileOrg/"))
+(setq org-mobile-directory  (concat org-agenda-directory "orgmobile/"))
 (setq org-mobile-encryption-tempfile (concat org-mobile-directory "orgtmpcrypt") )
 (unless (file-exists-p org-mobile-encryption-tempfile)
   (shell-command (concat newencryption org-mobile-encryption-tempfile))
   )
 
 ;; (setq org-mobile-files org-agenda-files)
-(setq org-mobile-files (list (concat refine-directory "GTD/")))
-(setq org-mobile-inbox-for-pull (concat refine-directory "GTD/from_mobile.org"))
-;; (setq org-mobile-inbox-for-pull (concat refine-directory "GTD/from-mobile.org"))
+(setq org-mobile-files (list (concat org-agenda-directory "/")))
+(setq org-mobile-inbox-for-pull (concat org-agenda-directory "from_mobile.org"))
+;; (setq org-mobile-inbox-for-pull (concat org-agenda-directory "from-mobile.org"))
 ;;      (unless (file-exists-p org-mobile-inbox-for-pull)
 ;;        (shell-command (concat "touch " org-mobile-inbox-for-pull)))
 
