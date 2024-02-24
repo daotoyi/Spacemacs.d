@@ -71,7 +71,7 @@ This function should only modify configuration layer settings."
      ;; version-control
      (elfeed :variables
              rmh-elfeed-org-files (list
-                                   "~/.spacemacs.d/elfeed/elfeed.org"
+                                   "~/.spacemacs.d/dylayer/elfeed/elfeed.org"
                                    ;; "~/.spacemacs.d/elfeed/elfeed-demo.org"
                                         )
              ;; elfeed-enable-web-interface t
@@ -582,30 +582,28 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
 	        (setq EamcsConfDir (concat EamcsDir "myemacs/")))
         (when (>= emacs-major-version 28)
           (setq EamcsConfDir (concat EamcsDir "spacemacs-develop/")))
-        (setenv "ROOTHOME" "HOME"
-                "HOME" EamcsConfDir)
+        ; (setenv "HOME" EamcsConfDir)
         ;; ----------------------------------------------------------------
         (setq ;; all backups goto ~/.backups instead in the current directory
-         backup-directory-alist (quote (("." . "E:/TMP/EmacsBackup")))
-         refine-directory "e:/refine/"
-         org-directory "e:/refine/org/"
-         org-agenda-directory (concat ROOTHOME "OneDrive/gtd/")
-         org-agenda-files (concat ROOTHOME "OneDrive/gtd/")
-         org-githubpages-directory "e:/refine/ghpage/"
-         music-directory "e:/Recreation/Music/"
-         newencryption "type nul>"
-         ))
+          backup-directory-alist (quote (("." . "e:/tmp/emacsbackup")))
+          refine-directory "e:/refine/"
+          org-directory "e:/OneDrive/org/"
+          org-agenda-directory "e:/OneDrive/gtd/"
+          org-agenda-files "e:/OneDrive/gtd/"
+          org-githubpages-directory "e:/OneDrive/ghpage/"
+          music-directory "e:/recreation/music/"
+          newencryption "type nul>"
+          ))
     ;; elif system-type
     ;;; darwin and gnu/linux
     (setq-default
      default-directory "~/refine/")
     (setq backup-directory-alist (quote (("." . "/tmp/emacsbackup")))
           refine-directory "~/refine/"
-          org-directory "~/refine/org/"
-          ;; org-agenda-directory "~/refine/gtd/"
+          org-directory "~/Nutstore Files/org/"
           org-agenda-directory "~/Nutstore Files/gtd/"
           org-agenda-files "~/Nutstore Files/gtd/"
-          org-githubpages-directory "~/refine/ghpage"
+          org-githubpages-directory "~/Nutstore Files/ghpage"
           music-directory "~/Music/"
           newencryption "touch "
           )

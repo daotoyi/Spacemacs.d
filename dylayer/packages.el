@@ -101,7 +101,7 @@ Each entry is either:
     ;; python
     ;; flymd
     company-jedi
-    bongo
+    ;; bongo
     emms
     yasnippet
     htmlize
@@ -317,7 +317,7 @@ Each entry is either:
   (use-package elfeed-dashboard
     :ensure t
     :config
-    (setq elfeed-dashboard-file "~/.spacemacs.d/elfeed/elfeed-dashboard.org")
+    (setq elfeed-dashboard-file "~/.spacemacs.d/dylayer/elfeed/elfeed-dashboard.org")
     (setq flycheck-global-modes '(not . (elfeed-search-mode)))
     ;; update feed counts on elfeed-quit
     (advice-add 'elfeed-search-quit-window :after #'elfeed-dashboard-update-links)
@@ -428,18 +428,17 @@ Each entry is either:
     (yas-global-mode 1)
     ))
 
-
 (defun dylayer/init-bongo()
-  (use-package bongo
-    :defer t
-    :config
-    (setq default-process-coding-system '(utf-8-unix . chinese-gbk-dos)) ;; recognize chinese
-    (when (eq system-type 'windows-nt)
-      (add-to-list 'exec-path "d:/Program Files/MPlayer for Windows/")
-      (setq bongo-default-directory "e:/Recreation/Music/"))
-    :custom
-    (bongo-enabled-backends '(mplayer))
-    ))
+(use-package bongo
+   :defer t
+   :config
+   (setq default-process-coding-system '(utf-8-unix . chinese-gbk-dos)) ;; recognize chinese
+   (when (eq system-type 'windows-nt)
+    (add-to-list 'exec-path "d:/Program Files/MPlayer for Windows/")
+     (setq bongo-default-directory "e:/Recreation/Music/"))
+   :custom
+   (bongo-enabled-backends '(mplayer))
+   ))
 
 (defun dylayer/init-emms()
   (use-package emms
