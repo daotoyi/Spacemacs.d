@@ -25,10 +25,11 @@
   (interactive)
   (cancel-timer org-mobile-sync-timer))
 
-(org-mobile-sync-enable)
+(if (eq system-type 'darwin)
+    (org-mobile-sync-enable))
 
 
-;;; org-agenda-view 
+;;; org-agenda-view
 (setq org-agenda-custom-commands
       '(("w" . "TaskScheme")
         ;; ("wa" "     important &&     urgent" tags-todo "+PRIORITY=\"A\"")
@@ -63,12 +64,13 @@
 	        alltodo ""
           ((org-agenda-skip-function 'dy/org-agenda-skip-scheduled-entries)
            (org-agenda-overriding-header "ITEMs unscheduled: "))
-          "e:/Refine/GTD/exportview.org")
+          org-mobile-exportview-file ;; "~/gtd/exportview.org"
+          )
          ("vd" "ITEMs no deadlines"
 	        alltodo ""
           ((org-agenda-skip-function 'dy/org-agenda-skip-not-deadline-entries)
            (org-agenda-overriding-header "ITEMs no deadlines: "))
-          "e:/Refine/GTD/exportview.org")
+          org-mobile-exportview-file)
          ))
 
 ;; Skip entries which only have timestamp but no TODO keywords.

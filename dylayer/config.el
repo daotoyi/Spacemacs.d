@@ -1,5 +1,5 @@
 ;;; config.el for dylayer
-
+
 
 ;; basic setting.
 ;; --------------------------------------------------------------------------------------------
@@ -164,18 +164,6 @@
          nil
          utf-8)))
 (setq ispell-hunspell-dictionary-alist ispell-local-dictionary-alist)
-
-
-;; atuo switch input method in evil iner and nromal mode
-(defun emacs-ime-disable ()
-  (w32-set-ime-open-status nil))
-(defun emacs-ime-enable ()
-  (w32-set-ime-open-status t))
-
-(cond ((eq system-type 'windows-nt)
-       (add-hook 'evil-insert-state-entry-hook 'emacs-ime-enable)
-       (add-hook 'evil-insert-state-exit-hook 'emacs-ime-disable)
-       ))
 
 
 ;; newsticker

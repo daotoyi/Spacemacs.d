@@ -223,9 +223,9 @@ You can add this to your `calendar-holidays'.")
 
 (defface cal-china-x-solar-term-face
   '((((class color) (background light))
-     :background "yellow")
+     :background "purple")
     (((class color) (background dark))
-     :background "yellow")
+     :background "purple")
     (t
      :inverse-video t))
   "Face for indicating `cal-china-x-solar-term'."

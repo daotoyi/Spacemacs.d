@@ -180,7 +180,7 @@
 
 ;; sync on emacs when init(pull) or exit(push)
 (add-hook 'after-init-hook 'org-mobile-pull)
-;; (add-hook 'kill-emacs-hook 'org-mobile-push) 
+(add-hook 'kill-emacs-hook 'org-mobile-push) 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (provide 'org-agenda-config)

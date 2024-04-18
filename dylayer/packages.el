@@ -557,7 +557,9 @@ Each entry is either:
   (use-package rime
     :custom
     (default-input-method "rime")
-    (cond ((eq system-type 'windows-nt) (rime-librime-root "D:/Scoop/apps/librime/current")))))
+    (cond ((eq system-type 'windows-nt)
+           (rime-librime-root "D:/Scoop/apps/librime/current")))
+    ))
 
 (defun dylayer/init-emojify()
   (use-package emojify

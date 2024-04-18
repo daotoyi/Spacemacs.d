@@ -62,9 +62,9 @@ This function should only modify configuration layer settings."
             shell-default-height 30
             shell-default-position 'bottom)
      (gtags :variables gtags-enable-by-default t)
-     chinese
-     ;; (chinese :variables
-     ;;          chinese-enable-fcitx t)
+     ;; chinese
+     (chinese :variables
+              chinese-enable-fcitx t)
      ;; (spell-checking :variables
      ;;                 spell-checking-enable-by-default nil)
      ;; syntax-checking
@@ -592,19 +592,23 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
           org-agenda-files "e:/OneDrive/gtd/"
           org-githubpages-directory "e:/OneDrive/ghpage/"
           music-directory "e:/recreation/music/"
+          ;; file -----
+          org-mobile-exportview-file "e:/refine/gtd/exportvies.org"
           newencryption "type nul>"
           ))
     ;; elif system-type
-    ;;; darwin and gnu/linux
+    ;;; darwin or gnu/linux
     (setq-default
      default-directory "~/refine/")
     (setq backup-directory-alist (quote (("." . "/tmp/emacsbackup")))
           refine-directory "~/refine/"
-          org-directory "~/Nutstore Files/org/"
-          org-agenda-directory "~/Nutstore Files/gtd/"
-          org-agenda-files "~/Nutstore Files/gtd/"
-          org-githubpages-directory "~/Nutstore Files/ghpage"
+          org-directory "~/Nutstore/org/"
+          org-agenda-directory "~/Nutstore/gtd/"
+          org-agenda-files "~/Nutstore/gtd/"
+          org-githubpages-directory "~/Nutstore/ghpage"
           music-directory "~/Music/"
+          ;; file -----
+          org-mobile-exportview-file "~/Nutstore/gtd/exportvies.org"
           newencryption "touch "
           )
     ))
@@ -661,6 +665,32 @@ before packages are loaded."
   ;; emacs key bindings in xxx-mode
   (evil-set-initial-state 'calendar-mode 'emacs)
   (evil-set-initial-state 'bongo-mode 'emacs)
+
+  ;; -----------------------------------------------------------------------
+  ;; atuo switch input method in evil iner and nromal mode
+  (defun emacs-ime-disable ()
+    (w32-set-ime-open-status nil))
+  (defun emacs-ime-enable ()
+    (w32-set-ime-open-status t))
+
+  (cond ((eq system-type 'windows-nt)
+         (add-hook 'evil-insert-state-entry-hook 'emacs-ime-enable)
+         (add-hook 'evil-insert-state-exit-hook 'emacs-ime-disable)
+         ))
+
+  (cond ((eq system-type 'darwin)
+         ;; Make sure the following comes before `(fcitx-aggressive-setup)'
+         (setq fcitx-active-evil-states '(insert emacs hybrid)) ; if you use hybrid mode
+         (fcitx-aggressive-setup)
+         (fcitx-prefix-keys-add "M-m") ; M-m is common in Spacemacs
+         ))
+
+  (cond ((eq system-type 'gnu/linux)
+         (setq fcitx-active-evil-states '(insert emacs hybrid)) ; if you use hybrid mode
+         (fcitx-aggressive-setup)
+         (fcitx-prefix-keys-add "M-m") ; M-m is common in Spacemacs
+         (setq fcitx-use-dbus t) ; uncomment if you're using Linux
+         ))
 
   ;; -----------------------------------------------------------------------
   ;; occur-mode "List lines matching regexp in new buffer"
