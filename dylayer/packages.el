@@ -422,18 +422,23 @@ Each entry is either:
   (use-package yasnippet
     :config
     ;; (add-to-list 'yas-snippet-dirs "～/.spacemacs.d/snippets")
-    ;; (add-to-list 'yas-snippet-dirs (concat EamcsConfDir ".spacemacs.d/snippets/"))
+    (cond ((eq system-type 'darwin)
+           (add-to-list 'yas-snippet-dirs "/Users/wenhua/.spacemacs.d/snippets")
+           ))
+    (cond ((eq system-type 'windows-nt)
+           (add-to-list 'yas-snippet-dirs (concat EamcsConfDir ".spacemacs.d/snippets/"))
+           ))
     (yas-reload-all)
     (add-hook 'prog-mode-hook #'yas-minor-mode)
     (yas-global-mode 1)
     ))
 
 (defun dylayer/init-bongo()
-(use-package bongo
-   :defer t
-   :config
-   (setq default-process-coding-system '(utf-8-unix . chinese-gbk-dos)) ;; recognize chinese
-   (when (eq system-type 'windows-nt)
+  (use-package bongo
+    :defer t
+    :config
+    (setq default-process-coding-system '(utf-8-unix . chinese-gbk-dos)) ;; recognize chinese
+    (when (eq system-type 'windows-nt)
     (add-to-list 'exec-path "d:/Program Files/MPlayer for Windows/")
      (setq bongo-default-directory "e:/Recreation/Music/"))
    :custom
