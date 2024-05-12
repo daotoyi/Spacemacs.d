@@ -692,7 +692,25 @@ before packages are loaded."
          (setq fcitx-use-dbus t) ; uncomment if you're using Linux
          ))
 
-  ;; -----------------------------------------------------------------------
+  ;; swim work good， together with fcitx-remote.
+  ;; input-switch-is-on t
+  (cond ((eq system-type 'darwin)
+         (setq input-switch-method-abc "com.apple.keylayout.ABC")
+         (setq input-switch-method-squirrel "im.rime.inputmethod.Squirrel.Hans")
+         (setq input-switch-is-on nil)
+         (defun input-switch-use-method (method)
+           (when input-switch-is-on
+             (shell-command (replace-regexp-in-string "method" method "swim use method"))))
+         (defun input-switch-enable () (interactive) (setq input-switch-is-on t))
+         (defun input-switch-disable () (interactive) (setq input-switch-is-on nil))
+         (add-hook 'evil-insert-state-entry-hook
+                   (lambda () (input-switch-use-method input-switch-method-squirrel)))
+         (add-hook 'evil-insert-state-exit-hook
+                   (lambda () (input-switch-use-method input-switch-method-abc)))
+         (setq input-switch-is-on t)
+         ))
+
+;; -----------------------------------------------------------------------
   ;; occur-mode "List lines matching regexp in new buffer"
   (evilified-state-evilify-map occur-mode-map
     :mode occur-mode)
