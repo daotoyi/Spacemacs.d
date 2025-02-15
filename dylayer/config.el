@@ -31,6 +31,9 @@
 ;; reload file modified by other editor.
 (global-auto-revert-mode t)
 
+;; auto-complete
+(global-company-mode)
+
 ;; save-some-buffers(C-x s) without querying user
 (setq save-silently-p t)
 (setq auto-save-silent t)

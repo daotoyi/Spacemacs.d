@@ -100,7 +100,7 @@ Each entry is either:
     super-save
     ;; python
     ;; flymd
-    company-jedi
+    ;; company-jedi
     ;; bongo
     emms
     yasnippet
@@ -513,7 +513,7 @@ Each entry is either:
 
     ;; example set-leader-keys in major-mode
     (progn
-      (spacemacs/set-leader-keys-for-major-mode 'python-mode  
+      (spacemacs/set-leader-keys-for-major-mode 'python-mode
         "cc" 'spacemacs/python-execute-file))
     ))
 (defun dylayer/init-company-jedi()

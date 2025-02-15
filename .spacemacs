@@ -582,14 +582,14 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
 	        (setq EamcsConfDir (concat EamcsDir "myemacs/")))
         (when (>= emacs-major-version 28)
           (setq EamcsConfDir (concat EamcsDir "spacemacs-develop/")))
-        ; (setenv "HOME" EamcsConfDir)
+        (setenv "HOME" EamcsConfDir)
         ;; ----------------------------------------------------------------
         (setq ;; all backups goto ~/.backups instead in the current directory
           backup-directory-alist (quote (("." . "e:/tmp/emacsbackup")))
           refine-directory "e:/refine/"
           org-directory "e:/OneDrive/org/"
           org-agenda-directory "e:/OneDrive/gtd/"
-          org-agenda-files "e:/OneDrive/gtd/"
+          org-agenda-files "e:/OneDrive/gtd/*.org"
           org-githubpages-directory "e:/OneDrive/ghpage/"
           music-directory "e:/recreation/music/"
           ;; file -----
@@ -602,9 +602,9 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
      default-directory "~/refine/")
     (setq backup-directory-alist (quote (("." . "/tmp/emacsbackup")))
           refine-directory "~/refine/"
-          org-directory "~/Nutstore/org/"
+          org-directory "~/Nutstore/org/*.org"
           org-agenda-directory "~/Nutstore/gtd/"
-          org-agenda-files "~/Nutstore/gtd/"
+          org-agenda-files "~/Nutstore/gtd/*.org"
           org-githubpages-directory "~/Nutstore/ghpage"
           music-directory "~/Music/"
           ;; file -----
@@ -682,13 +682,13 @@ before packages are loaded."
          ;; Make sure the following comes before `(fcitx-aggressive-setup)'
          (setq fcitx-active-evil-states '(insert emacs hybrid)) ; if you use hybrid mode
          (fcitx-aggressive-setup)
-         (fcitx-prefix-keys-add "M-m") ; M-m is common in Spacemacs
+         ;; (fcitx-prefix-keys-add "M-m") ; M-m is common in Spacemacs
          ))
 
   (cond ((eq system-type 'gnu/linux)
          (setq fcitx-active-evil-states '(insert emacs hybrid)) ; if you use hybrid mode
          (fcitx-aggressive-setup)
-         (fcitx-prefix-keys-add "M-m") ; M-m is common in Spacemacs
+         ;; (fcitx-prefix-keys-add "M-m") ; M-m is common in Spacemacs
          (setq fcitx-use-dbus t) ; uncomment if you're using Linux
          ))
 

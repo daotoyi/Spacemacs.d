@@ -7,10 +7,10 @@
 
 ;; (when (eq system-type 'windows-nt)
 ;;   (setq-default org-agenda-directory "E:/Refine/GTD/")
-;;   (setq org-agenda-files '("E:/Refine/GTD/")))
+;;   (setq org-agenda-files '("E:/Refine/GTD/xxx.org")))
 ;; (when (eq system-type 'gnu/linux)
 ;;   (setq-default org-agenda-directory "/mnt/e/Refine/GTD/")
-;;   (setq org-agenda-files '("/mnt/e/Refine/GTD/")))
+;;   (setq org-agenda-files '("/mnt/e/Refine/GTD/xxx.org")))
 
 
 ;;; org-todo

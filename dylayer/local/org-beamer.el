@@ -4,7 +4,7 @@
 
 
 (setq ps-paper-type 'a4
-      ps-font-size 16.0
+      ps-font-size 10.0
       ps-print-header nil
       ps-landscape-mode nil)
 
@@ -28,8 +28,11 @@
 (add-to-list 'org-latex-classes
              '("beamer-awesome"
                "\\documentclass[compress,xcolor=dvipsnames,svgnames,x11names,11pt,bigger,presentation,notheorems]{beamer}
-               \\input{D:/Program Files (x86)/Emacs/spacemacs-develop/.spacemacs.d/dylayer/option/latex-customize.tex}
-               \\input{D:/Program Files (x86)/Emacs/spacemacs-develop/.spacemacs.d/dylayer/option/preface-for-beamer.tex}"
+
+               %\\input{D:/Program Files (x86)/Emacs/spacemacs-develop/.spacemacs.d/dylayer/option/latex-customize.tex}
+               %\\input{D:/Program Files (x86)/Emacs/spacemacs-develop/.spacemacs.d/dylayer/option/preface-for-beamer.tex}
+               \\input{~/.spacemacs.d/dylayer/option/latex-customize.tex}
+               \\input{~/.spacemacs.d/dylayer/option/preface-for-beamer.tex}"
 
 	             ("\\section{%s}" . "\\section*{%s}")
                ("\\subsection{%s}" . "\\subsection*{%s}")
@@ -42,8 +45,11 @@
 (add-to-list 'org-latex-classes
              '("beamer-business"
                "\\documentclass[compress,xcolor=dvipsnames,svgnames,x11names,10pt,bigger,presentation,notheorems]{beamer}
-               \\input{D:/Program Files (x86)/Emacs/spacemacs-develop/.spacemacs.d/dylayer/option/latex-customize.tex}
-               \\input{D:/Program Files (x86)/Emacs/spacemacs-develop/.spacemacs.d/dylayer/option/preface-for-beamer-business.tex}"
+
+               %\\input{D:/Program Files (x86)/Emacs/spacemacs-develop/.spacemacs.d/dylayer/option/latex-customize.tex}
+               %\\input{D:/Program Files (x86)/Emacs/spacemacs-develop/.spacemacs.d/dylayer/option/preface-for-beamer-business.tex}
+               \\input{~/.spacemacs.d/dylayer/option/latex-customize.tex}
+               \\input{~/.spacemacs.d/dylayer/option/preface-for-beamer-business.tex}"
 
 	             ("\\section{%s}" . "\\section*{%s}")
                ("\\subsection{%s}" . "\\subsection*{%s}")
@@ -56,9 +62,12 @@
 (add-to-list 'org-latex-classes
              '("beamer-prefer"
                "\\documentclass[xcolor=dvipsnames,svgnames,x11names,10pt,bigger,presentation]{beamer}
-               \\input{D:/Program Files (x86)/Emacs/spacemacs-develop/.spacemacs.d/dylayer/option/latex-customize.tex}
-                \\usepackage[UTF8,space,hyperref]{ctex}
-                %\\usepackage[dvipsnames,svgnames,x11names]{xcolor}
+
+               %\\input{D:/Program Files (x86)/Emacs/spacemacs-develop/.spacemacs.d/dylayer/option/latex-customize.tex}
+               \\input{~/.spacemacs.d/dylayer/option/latex-customize.tex}
+
+               \\usepackage[UTF8,space,hyperref]{ctex}
+               %\\usepackage[dvipsnames,svgnames,x11names]{xcolor}
 
                 \\usepackage{grffile}
                 \\usepackage[abs]{overpic}

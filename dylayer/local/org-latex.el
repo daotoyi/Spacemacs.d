@@ -105,7 +105,8 @@
 (add-to-list 'org-latex-classes
 	           '("dissertation"
 		           "\\documentclass[UTF8,twoside,a4paper,12pt,openright]{ctexrep}
-               \\input{D:/Program Files (x86)/Emacs/spacemacs-develop/.spacemacs.d/dylayer/option/latex-article-dissertation.tex}
+               \\input{~/.spacemacs.d/dylayer/option/latex-article-dissertation.tex
+               %\\input{D:/Program Files (x86)/Emacs/spacemacs-develop/.spacemacs.d/dylayer/option/latex-article-dissertation.tex}
 
                 [NO-DEFAULT-PACKAGES]
                 [NO-PACKAGES]
@@ -126,7 +127,8 @@
 (add-to-list 'org-latex-classes
              '("article-cn"
                "\\documentclass[10pt,a4paper]{article}
-               \\input{D:/Program Files (x86)/Emacs/spacemacs-develop/.spacemacs.d/dylayer/option/latex-article-cn.tex}
+               \\input{~/.spacemacs.d/dylayer/option/latex-article-cn.tex
+               %\\input{D:/Program Files (x86)/Emacs/spacemacs-develop/.spacemacs.d/dylayer/option/latex-article-cn.tex}
 
                 [NO-DEFAULT-PACKAGES]
                 [NO-PACKAGES]"
